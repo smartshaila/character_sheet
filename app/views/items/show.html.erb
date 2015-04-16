@@ -22,8 +22,8 @@
 
 <p>
   <strong>Item type:</strong>
-  <%= @item.item_type %>
+  <%= @item.item_type.name %>
 </p>
-
+<%= link_to 'New Item', new_item_path %>
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>

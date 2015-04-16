@@ -4,6 +4,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Player</th>
+      <th>Campaign</th>
       <th>Race</th>
       <th>Alignment</th>
       <th>Current xp</th>
@@ -21,6 +23,8 @@
     <% @characters.each do |character| %>
       <tr>
         <td><%= character.name %></td>
+        <td><%= character.player.name %></td>
+        <td><%= character.campaign.name %></td>
         <td><%= character.race %></td>
         <td><%= character.alignment %></td>
         <td><%= character.current_xp %></td>
@@ -29,7 +33,7 @@
         <td><%= character.speed %></td>
         <td><%= character.notes %></td>
         <td><%= character.has_inspiration %></td>
-        <td><%= character.adventuring_class %></td>
+        <td><%= character.adventuring_class.name %></td>
         <td><%= link_to 'Show', character %></td>
         <td><%= link_to 'Edit', edit_character_path(character) %></td>
         <td><%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %></td>

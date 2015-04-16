@@ -28,16 +28,20 @@
     <%= f.number_field :range %>
   </div>
   <div class="field">
-    <%= f.label :damage_type_id %><br>
-    <%= f.text_field :damage_type_id %>
+    <%= f.label :disadvantage_range %><br>
+    <%= f.number_field :disadvantage_range %>
   </div>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
+    <%= f.label :damage_type %><br>
+    <%= f.collection_select(:damage_type_id, DamageType.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :ability_id %><br>
-    <%= f.text_field :ability_id %>
+    <%= f.label :item %><br>
+    <%= f.collection_select(:item_id, Item.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="field">
+    <%= f.label :ability %><br>
+    <%= f.collection_select(:ability_id, Ability.all, :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>

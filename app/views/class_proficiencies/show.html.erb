@@ -2,12 +2,12 @@
 
 <p>
   <strong>Adventuring class:</strong>
-  <%= @class_proficiency.adventuring_class %>
+  <%= @class_proficiency.adventuring_class.name %>
 </p>
 
 <p>
   <strong>Ability:</strong>
-  <%= @class_proficiency.ability %>
+  <%= @class_proficiency.ability.name %>
 </p>
 
 <%= link_to 'Edit', edit_class_proficiency_path(@class_proficiency) %> |

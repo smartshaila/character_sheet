@@ -21,19 +21,24 @@
 </p>
 
 <p>
+  <strong>Disadvantage Range:</strong>
+  <%= @weapon.range %>
+</p>
+
+<p>
   <strong>Damage type:</strong>
-  <%= @weapon.damage_type %>
+  <%= @weapon.damage_type.name %>
 </p>
 
 <p>
   <strong>Item:</strong>
-  <%= @weapon.item %>
+  <%= @weapon.item.name %>
 </p>
 
 <p>
   <strong>Ability:</strong>
-  <%= @weapon.ability %>
+  <%= @weapon.ability.name %>
 </p>
-
+<%= link_to 'New Weapon', new_weapon_path %>
 <%= link_to 'Edit', edit_weapon_path(@weapon) %> |
 <%= link_to 'Back', weapons_path %>

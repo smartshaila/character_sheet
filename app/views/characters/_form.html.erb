@@ -20,6 +20,14 @@
     <%= f.text_field :race %>
   </div>
   <div class="field">
+    <%= f.label :player %><br>
+    <%= f.collection_select(:player_id, Player.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="field">
+    <%= f.label :campaign %><br>
+    <%= f.collection_select(:campaign_id, Campaign.all, :id, :name, prompt: true) %>
+  </div>
+  <div class="field">
     <%= f.label :alignment %><br>
     <%= f.text_field :alignment %>
   </div>
@@ -48,8 +56,8 @@
     <%= f.check_box :has_inspiration %>
   </div>
   <div class="field">
-    <%= f.label :adventuring_class_id %><br>
-    <%= f.text_field :adventuring_class_id %>
+    <%= f.label :adventuring_class %><br>
+    <%= f.collection_select(:adventuring_class_id, AdventuringClass.all, :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>

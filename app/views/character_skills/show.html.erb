@@ -2,13 +2,13 @@
 
 <p>
   <strong>Character:</strong>
-  <%= @character_skill.character %>
+  <%= @character_skill.character.name %>
 </p>
 
 <p>
   <strong>Skill:</strong>
-  <%= @character_skill.skill %>
+  <%= @character_skill.skill.name %>
 </p>
-
+<%= link_to 'New Character skill', new_character_skill_path %>
 <%= link_to 'Edit', edit_character_skill_path(@character_skill) %> |
 <%= link_to 'Back', character_skills_path %>

@@ -13,8 +13,8 @@
   <tbody>
     <% @character_abilities.each do |character_ability| %>
       <tr>
-        <td><%= character_ability.character %></td>
-        <td><%= character_ability.ability %></td>
+        <td><%= character_ability.character.name %></td>
+        <td><%= character_ability.ability.name %></td>
         <td><%= character_ability.value %></td>
         <td><%= link_to 'Show', character_ability %></td>
         <td><%= link_to 'Edit', edit_character_ability_path(character_ability) %></td>

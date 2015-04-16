@@ -7,6 +7,7 @@
       <th>Damage die</th>
       <th>Die count</th>
       <th>Range</th>
+      <th>Disadvantage Range</th>
       <th>Damage type</th>
       <th>Item</th>
       <th>Ability</th>
@@ -21,9 +22,10 @@
         <td><%= weapon.damage_die %></td>
         <td><%= weapon.die_count %></td>
         <td><%= weapon.range %></td>
-        <td><%= weapon.damage_type %></td>
-        <td><%= weapon.item %></td>
-        <td><%= weapon.ability %></td>
+        <td><%= weapon.disadvantage_range %></td>
+        <td><%= weapon.damage_type.name %></td>
+        <td><%= weapon.item.name %></td>
+        <td><%= weapon.ability.name %></td>
         <td><%= link_to 'Show', weapon %></td>
         <td><%= link_to 'Edit', edit_weapon_path(weapon) %></td>
         <td><%= link_to 'Destroy', weapon, method: :delete, data: { confirm: 'Are you sure?' } %></td>

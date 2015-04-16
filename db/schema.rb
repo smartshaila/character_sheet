@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416011549) do
+ActiveRecord::Schema.define(version: 20150416022241) do
 
   create_table "abilities", force: true do |t|
     t.string   "name"
@@ -87,9 +87,13 @@ ActiveRecord::Schema.define(version: 20150416011549) do
     t.integer  "adventuring_class_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "player_id"
+    t.integer  "campaign_id"
   end
 
   add_index "characters", ["adventuring_class_id"], name: "index_characters_on_adventuring_class_id"
+  add_index "characters", ["campaign_id"], name: "index_characters_on_campaign_id"
+  add_index "characters", ["player_id"], name: "index_characters_on_player_id"
 
   create_table "class_proficiencies", force: true do |t|
     t.integer  "adventuring_class_id"
@@ -199,6 +203,7 @@ ActiveRecord::Schema.define(version: 20150416011549) do
     t.integer  "ability_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "disadvantage_range"
   end
 
   add_index "weapons", ["ability_id"], name: "index_weapons_on_ability_id"

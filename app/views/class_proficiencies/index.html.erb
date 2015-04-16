@@ -12,8 +12,8 @@
   <tbody>
     <% @class_proficiencies.each do |class_proficiency| %>
       <tr>
-        <td><%= class_proficiency.adventuring_class %></td>
-        <td><%= class_proficiency.ability %></td>
+        <td><%= class_proficiency.adventuring_class.name %></td>
+        <td><%= class_proficiency.ability.name %></td>
         <td><%= link_to 'Show', class_proficiency %></td>
         <td><%= link_to 'Edit', edit_class_proficiency_path(class_proficiency) %></td>
         <td><%= link_to 'Destroy', class_proficiency, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,7 +13,7 @@
   <tbody>
     <% @armors.each do |armor| %>
       <tr>
-        <td><%= armor.item %></td>
+        <td><%= armor.item.name %></td>
         <td><%= armor.base_ac %></td>
         <td><%= armor.max_ability %></td>
         <td><%= link_to 'Show', armor %></td>

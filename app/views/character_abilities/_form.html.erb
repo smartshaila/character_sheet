@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :character_id %><br>
-    <%= f.text_field :character_id %>
+    <%= f.label :character %><br>
+    <%= f.collection_select(:character_id, Character.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :ability_id %><br>
-    <%= f.text_field :ability_id %>
+    <%= f.label :ability %><br>
+    <%= f.collection_select(:ability_id, Ability.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :value %><br>

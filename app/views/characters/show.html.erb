@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <strong>Level:</strong>
+  <%= @character.level_progression.level %>
+</p>
+
+<p>
   <strong>Max hp:</strong>
   <%= @character.max_hp %>
 </p>
@@ -47,8 +52,48 @@
 
 <p>
   <strong>Adventuring class:</strong>
-  <%= @character.adventuring_class %>
+  <%= @character.adventuring_class.name %>
 </p>
+
+<table>
+  <tr>
+    <th>Ability</th>
+    <th>Score</th>
+    <th>Modifier</th>
+    <th>Saving Throw</th>
+  </tr>
+  <% @character.character_abilities.each do |ca| %>
+    <%
+       ability_mod = (ca.value - 10)/2
+       proficiency = @character.adventuring_class.class_proficiencies.map(&:ability).include?(ca.ability) ? @character.level_progression.proficiency : 0
+    %>
+    <tr>
+      <td><%= ca.ability.name %></td>
+      <td><%= ca.value %></td>
+      <td><%= sprintf("%+d", ability_mod) %></td>
+      <td><%= sprintf("%+d", proficiency + ability_mod) %></td>
+    </tr>
+  <% end %>
+</table>
+<br>
+<table>
+  <tr>
+    <th>Skill</th>
+    <th>Ability</th>
+    <th>Value</th>
+  </tr>
+  <% Skill.all.each do |skill| %>
+    <%
+       ability_mod = (@character.character_abilities.where("ability_id = ?", skill.ability.id).first.value - 10)/2
+       proficiency = @character.character_skills.map(&:skill).include?(skill) ? @character.level_progression.proficiency : 0
+    %>
+    <tr>
+      <td><%= skill.name %></td>
+      <td><%= skill.ability.name %></td>
+      <td><%= sprintf("%+d", proficiency + ability_mod) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |
 <%= link_to 'Back', characters_path %>

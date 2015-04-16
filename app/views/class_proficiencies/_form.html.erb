@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :adventuring_class_id %><br>
-    <%= f.text_field :adventuring_class_id %>
+    <%= f.label :adventuring_class %><br>
+    <%= f.collection_select(:adventuring_class_id, AdventuringClass.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :ability_id %><br>
-    <%= f.text_field :ability_id %>
+    <%= f.label :ability %><br>
+    <%= f.collection_select(:ability_id, Ability.all, :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>

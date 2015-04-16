@@ -10,6 +10,7 @@ class CharactersController < ApplicationController
   # GET /characters/1
   # GET /characters/1.json
   def show
+
   end
 
   # GET /characters/new
@@ -69,6 +70,6 @@ class CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :race, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id)
+      params.require(:character).permit(:name, :race, :player_id, :campaign_id, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id)
     end
 end

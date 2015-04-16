@@ -2,12 +2,12 @@
 
 <p>
   <strong>Character:</strong>
-  <%= @character_ability.character %>
+  <%= @character_ability.character.name %>
 </p>
 
 <p>
   <strong>Ability:</strong>
-  <%= @character_ability.ability %>
+  <%= @character_ability.ability.name %>
 </p>
 
 <p>
@@ -15,5 +15,6 @@
   <%= @character_ability.value %>
 </p>
 
+<%= link_to 'New Character ability', new_character_ability_path %>
 <%= link_to 'Edit', edit_character_ability_path(@character_ability) %> |
 <%= link_to 'Back', character_abilities_path %>

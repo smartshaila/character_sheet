@@ -12,8 +12,8 @@
   <tbody>
     <% @character_skills.each do |character_skill| %>
       <tr>
-        <td><%= character_skill.character %></td>
-        <td><%= character_skill.skill %></td>
+        <td><%= character_skill.character.name %></td>
+        <td><%= character_skill.skill.name %></td>
         <td><%= link_to 'Show', character_skill %></td>
         <td><%= link_to 'Edit', edit_character_skill_path(character_skill) %></td>
         <td><%= link_to 'Destroy', character_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>

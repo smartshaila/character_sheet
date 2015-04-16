@@ -28,8 +28,8 @@
     <%= f.text_field :value %>
   </div>
   <div class="field">
-    <%= f.label :item_type_id %><br>
-    <%= f.text_field :item_type_id %>
+    <%= f.label :item_type %><br>
+    <%= f.collection_select(:item_type_id, ItemType.all, :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -16,8 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :ability_id %><br>
-    <%= f.text_field :ability_id %>
+    <%= f.label :ability %><br>
+    <%= f.collection_select(:ability_id, Ability.all, :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>
