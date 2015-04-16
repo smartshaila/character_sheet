@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :item %><br>
+    <%= f.collection_select(:item_id, Item.all, :id, :name, prompt: true) %>
+  </div>
+
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -34,10 +39,6 @@
   <div class="field">
     <%= f.label :damage_type %><br>
     <%= f.collection_select(:damage_type_id, DamageType.all, :id, :name, prompt: true) %>
-  </div>
-  <div class="field">
-    <%= f.label :item %><br>
-    <%= f.collection_select(:item_id, Item.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :ability %><br>
