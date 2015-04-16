@@ -1,0 +1,29 @@
+<%= form_for(@class_spell) do |f| %>
+  <% if @class_spell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@class_spell.errors.count, "error") %> prohibited this class_spell from being saved:</h2>
+
+      <ul>
+      <% @class_spell.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :adventuring_class_id %><br>
+    <%= f.text_field :adventuring_class_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subclass_id %><br>
+    <%= f.text_field :subclass_id %>
+  </div>
+  <div class="field">
+    <%= f.label :spell_id %><br>
+    <%= f.text_field :spell_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

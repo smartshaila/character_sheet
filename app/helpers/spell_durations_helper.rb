@@ -1,0 +1,2 @@
+module SpellDurationsHelper
+end

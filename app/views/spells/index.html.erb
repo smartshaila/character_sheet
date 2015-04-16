@@ -1,0 +1,37 @@
+<h1>Listing spells</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Magic school</th>
+      <th>Is verbal</th>
+      <th>Is somatic</th>
+      <th>Is concentration</th>
+      <th>Is ritual</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spells.each do |spell| %>
+      <tr>
+        <td><%= spell.name %></td>
+        <td><%= spell.description %></td>
+        <td><%= spell.magic_school %></td>
+        <td><%= spell.is_verbal %></td>
+        <td><%= spell.is_somatic %></td>
+        <td><%= spell.is_concentration %></td>
+        <td><%= spell.is_ritual %></td>
+        <td><%= link_to 'Show', spell %></td>
+        <td><%= link_to 'Edit', edit_spell_path(spell) %></td>
+        <td><%= link_to 'Destroy', spell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spell', new_spell_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character_id: 
+  spell_id: 
+  is_cast: false
+
+two:
+  character_id: 
+  spell_id: 
+  is_cast: false

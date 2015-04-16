@@ -1,0 +1,27 @@
+<h1>Listing favorite_spells</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player</th>
+      <th>Spell</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorite_spells.each do |favorite_spell| %>
+      <tr>
+        <td><%= favorite_spell.player %></td>
+        <td><%= favorite_spell.spell %></td>
+        <td><%= link_to 'Show', favorite_spell %></td>
+        <td><%= link_to 'Edit', edit_favorite_spell_path(favorite_spell) %></td>
+        <td><%= link_to 'Destroy', favorite_spell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Favorite spell', new_favorite_spell_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @time_increment.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @time_increment.description %>
+</p>
+
+<%= link_to 'Edit', edit_time_increment_path(@time_increment) %> |
+<%= link_to 'Back', time_increments_path %>

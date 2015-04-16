@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adventuring class:</strong>
+  <%= @class_spell.adventuring_class %>
+</p>
+
+<p>
+  <strong>Subclass:</strong>
+  <%= @class_spell.subclass %>
+</p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @class_spell.spell %>
+</p>
+
+<%= link_to 'Edit', edit_class_spell_path(@class_spell) %> |
+<%= link_to 'Back', class_spells_path %>

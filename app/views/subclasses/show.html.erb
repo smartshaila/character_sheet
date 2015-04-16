@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adventuring class:</strong>
+  <%= @subclass.adventuring_class.name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @subclass.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @subclass.description %>
+</p>
+
+<p>
+  <strong>Min level:</strong>
+  <%= @subclass.min_level %>
+</p>
+
+<%= link_to 'New Subclass', new_subclass_path %> |
+<%= link_to 'Edit', edit_subclass_path(@subclass) %> |
+<%= link_to 'Back', subclasses_path %>

@@ -1,0 +1,27 @@
+<h1>Listing spell_tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spell</th>
+      <th>Tag</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spell_tags.each do |spell_tag| %>
+      <tr>
+        <td><%= spell_tag.spell %></td>
+        <td><%= spell_tag.tag %></td>
+        <td><%= link_to 'Show', spell_tag %></td>
+        <td><%= link_to 'Edit', edit_spell_tag_path(spell_tag) %></td>
+        <td><%= link_to 'Destroy', spell_tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spell tag', new_spell_tag_path %>

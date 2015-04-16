@@ -1,0 +1,2 @@
+module SpellCastingsHelper
+end

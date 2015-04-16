@@ -1,0 +1,2 @@
+module SpellKnownProgressionsHelper
+end

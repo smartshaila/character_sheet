@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416022241) do
+ActiveRecord::Schema.define(version: 20150416171529) do
 
   create_table "abilities", force: true do |t|
     t.string   "name"
@@ -105,11 +105,33 @@ ActiveRecord::Schema.define(version: 20150416022241) do
   add_index "class_proficiencies", ["ability_id"], name: "index_class_proficiencies_on_ability_id"
   add_index "class_proficiencies", ["adventuring_class_id"], name: "index_class_proficiencies_on_adventuring_class_id"
 
+  create_table "class_spells", force: true do |t|
+    t.integer  "adventuring_class_id"
+    t.integer  "subclass_id"
+    t.integer  "spell_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "class_spells", ["adventuring_class_id"], name: "index_class_spells_on_adventuring_class_id"
+  add_index "class_spells", ["spell_id"], name: "index_class_spells_on_spell_id"
+  add_index "class_spells", ["subclass_id"], name: "index_class_spells_on_subclass_id"
+
   create_table "damage_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorite_spells", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "spell_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_spells", ["player_id"], name: "index_favorite_spells_on_player_id"
+  add_index "favorite_spells", ["spell_id"], name: "index_favorite_spells_on_spell_id"
 
   create_table "features", force: true do |t|
     t.string   "name"
@@ -159,10 +181,27 @@ ActiveRecord::Schema.define(version: 20150416022241) do
 
   add_index "items", ["item_type_id"], name: "index_items_on_item_type_id"
 
+  create_table "known_spells", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "spell_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "known_spells", ["character_id"], name: "index_known_spells_on_character_id"
+  add_index "known_spells", ["spell_id"], name: "index_known_spells_on_spell_id"
+
   create_table "level_progressions", force: true do |t|
     t.integer  "level"
     t.integer  "proficiency"
     t.integer  "min_xp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "magic_schools", force: true do |t|
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -184,6 +223,24 @@ ActiveRecord::Schema.define(version: 20150416022241) do
     t.datetime "updated_at"
   end
 
+  create_table "prepared_spells", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "spell_id"
+    t.boolean  "is_cast"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prepared_spells", ["character_id"], name: "index_prepared_spells_on_character_id"
+  add_index "prepared_spells", ["spell_id"], name: "index_prepared_spells_on_spell_id"
+
+  create_table "range_types", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "skills", force: true do |t|
     t.string   "name"
     t.integer  "ability_id"
@@ -192,6 +249,126 @@ ActiveRecord::Schema.define(version: 20150416022241) do
   end
 
   add_index "skills", ["ability_id"], name: "index_skills_on_ability_id"
+
+  create_table "spell_castings", force: true do |t|
+    t.integer  "spell_id"
+    t.integer  "time_increment_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_castings", ["spell_id"], name: "index_spell_castings_on_spell_id"
+  add_index "spell_castings", ["time_increment_id"], name: "index_spell_castings_on_time_increment_id"
+
+  create_table "spell_durations", force: true do |t|
+    t.integer  "spell_id"
+    t.integer  "time_increment_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_durations", ["spell_id"], name: "index_spell_durations_on_spell_id"
+  add_index "spell_durations", ["time_increment_id"], name: "index_spell_durations_on_time_increment_id"
+
+  create_table "spell_known_progressions", force: true do |t|
+    t.integer  "adventuring_class_id"
+    t.integer  "subclass_id"
+    t.integer  "level_progression_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_known_progressions", ["adventuring_class_id"], name: "index_spell_known_progressions_on_adventuring_class_id"
+  add_index "spell_known_progressions", ["level_progression_id"], name: "index_spell_known_progressions_on_level_progression_id"
+  add_index "spell_known_progressions", ["subclass_id"], name: "index_spell_known_progressions_on_subclass_id"
+
+  create_table "spell_materials", force: true do |t|
+    t.integer  "spell_id"
+    t.text     "description"
+    t.integer  "value"
+    t.boolean  "is_consumed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_materials", ["spell_id"], name: "index_spell_materials_on_spell_id"
+
+  create_table "spell_progressions", force: true do |t|
+    t.integer  "adventuring_class_id"
+    t.integer  "subclass_id"
+    t.integer  "level_progression_id"
+    t.integer  "spell_level"
+    t.integer  "slots"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_progressions", ["adventuring_class_id"], name: "index_spell_progressions_on_adventuring_class_id"
+  add_index "spell_progressions", ["level_progression_id"], name: "index_spell_progressions_on_level_progression_id"
+  add_index "spell_progressions", ["subclass_id"], name: "index_spell_progressions_on_subclass_id"
+
+  create_table "spell_ranges", force: true do |t|
+    t.integer  "spell_id"
+    t.integer  "range_type_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_ranges", ["range_type_id"], name: "index_spell_ranges_on_range_type_id"
+  add_index "spell_ranges", ["spell_id"], name: "index_spell_ranges_on_spell_id"
+
+  create_table "spell_tags", force: true do |t|
+    t.integer  "spell_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spell_tags", ["spell_id"], name: "index_spell_tags_on_spell_id"
+  add_index "spell_tags", ["tag_id"], name: "index_spell_tags_on_tag_id"
+
+  create_table "spells", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "magic_school_id"
+    t.boolean  "is_verbal"
+    t.boolean  "is_somatic"
+    t.boolean  "is_concentration"
+    t.boolean  "is_ritual"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spells", ["magic_school_id"], name: "index_spells_on_magic_school_id"
+
+  create_table "subclasses", force: true do |t|
+    t.integer  "adventuring_class_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "min_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subclasses", ["adventuring_class_id"], name: "index_subclasses_on_adventuring_class_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_increments", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "weapons", force: true do |t|
     t.string   "name"

@@ -1,0 +1,37 @@
+<%= form_for(@spell_progression) do |f| %>
+  <% if @spell_progression.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spell_progression.errors.count, "error") %> prohibited this spell_progression from being saved:</h2>
+
+      <ul>
+      <% @spell_progression.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :adventuring_class_id %><br>
+    <%= f.text_field :adventuring_class_id %>
+  </div>
+  <div class="field">
+    <%= f.label :subclass_id %><br>
+    <%= f.text_field :subclass_id %>
+  </div>
+  <div class="field">
+    <%= f.label :level_progression_id %><br>
+    <%= f.text_field :level_progression_id %>
+  </div>
+  <div class="field">
+    <%= f.label :spell_level %><br>
+    <%= f.number_field :spell_level %>
+  </div>
+  <div class="field">
+    <%= f.label :slots %><br>
+    <%= f.number_field :slots %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

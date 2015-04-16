@@ -1,0 +1,2 @@
+module KnownSpellsHelper
+end

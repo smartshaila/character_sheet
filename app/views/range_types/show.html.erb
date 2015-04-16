@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @range_type.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @range_type.description %>
+</p>
+
+<%= link_to 'Edit', edit_range_type_path(@range_type) %> |
+<%= link_to 'Back', range_types_path %>

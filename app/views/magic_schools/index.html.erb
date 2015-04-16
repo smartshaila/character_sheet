@@ -1,0 +1,27 @@
+<h1>Listing magic_schools</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @magic_schools.each do |magic_school| %>
+      <tr>
+        <td><%= magic_school.name %></td>
+        <td><%= magic_school.description %></td>
+        <td><%= link_to 'Show', magic_school %></td>
+        <td><%= link_to 'Edit', edit_magic_school_path(magic_school) %></td>
+        <td><%= link_to 'Destroy', magic_school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Magic school', new_magic_school_path %>

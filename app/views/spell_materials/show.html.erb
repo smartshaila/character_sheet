@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @spell_material.spell %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @spell_material.description %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @spell_material.value %>
+</p>
+
+<p>
+  <strong>Is consumed:</strong>
+  <%= @spell_material.is_consumed %>
+</p>
+
+<%= link_to 'Edit', edit_spell_material_path(@spell_material) %> |
+<%= link_to 'Back', spell_materials_path %>

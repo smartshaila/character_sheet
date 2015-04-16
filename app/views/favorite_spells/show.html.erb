@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @favorite_spell.player %>
+</p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @favorite_spell.spell %>
+</p>
+
+<%= link_to 'Edit', edit_favorite_spell_path(@favorite_spell) %> |
+<%= link_to 'Back', favorite_spells_path %>

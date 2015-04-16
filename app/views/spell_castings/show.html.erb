@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @spell_casting.spell %>
+</p>
+
+<p>
+  <strong>Time increment:</strong>
+  <%= @spell_casting.time_increment %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @spell_casting.value %>
+</p>
+
+<%= link_to 'Edit', edit_spell_casting_path(@spell_casting) %> |
+<%= link_to 'Back', spell_castings_path %>

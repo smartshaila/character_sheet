@@ -1,41 +1,47 @@
 Rails.application.routes.draw do
+  resources :spell_materials
+
+  resources :prepared_spells
+
+  resources :known_spells
+
+  resources :favorite_spells
+
+  resources :spell_tags
+
+  resources :tags
+
+  resources :spell_known_progressions
+  resources :spell_progressions
+  resources :class_spells
+  resources :spell_durations
+  resources :spell_castings
+  resources :spell_ranges
+  resources :spells
+  resources :magic_schools
+  resources :time_increments
+  resources :range_types
+  resources :subclasses
   resources :inventories
-
   resources :magics
-
   resources :armors
-
   resources :weapons
-
   resources :damage_types
-
   resources :items
-
   resources :item_types
-
   resources :character_skills
-
   resources :skills
-
   resources :character_features
-
   resources :features
-
   resources :character_abilities
-
   resources :class_proficiencies
-
   resources :characters
-
   resources :abilities
-
   resources :level_progressions
-
   resources :adventuring_classes
-
   resources :campaigns
-
   resources :players
+  root 'characters#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

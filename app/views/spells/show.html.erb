@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @spell.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @spell.description %>
+</p>
+
+<p>
+  <strong>Magic school:</strong>
+  <%= @spell.magic_school %>
+</p>
+
+<p>
+  <strong>Is verbal:</strong>
+  <%= @spell.is_verbal %>
+</p>
+
+<p>
+  <strong>Is somatic:</strong>
+  <%= @spell.is_somatic %>
+</p>
+
+<p>
+  <strong>Is concentration:</strong>
+  <%= @spell.is_concentration %>
+</p>
+
+<p>
+  <strong>Is ritual:</strong>
+  <%= @spell.is_ritual %>
+</p>
+
+<%= link_to 'Edit', edit_spell_path(@spell) %> |
+<%= link_to 'Back', spells_path %>

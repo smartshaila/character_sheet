@@ -1,0 +1,29 @@
+<h1>Listing prepared_spells</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Spell</th>
+      <th>Is cast</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prepared_spells.each do |prepared_spell| %>
+      <tr>
+        <td><%= prepared_spell.character %></td>
+        <td><%= prepared_spell.spell %></td>
+        <td><%= prepared_spell.is_cast %></td>
+        <td><%= link_to 'Show', prepared_spell %></td>
+        <td><%= link_to 'Edit', edit_prepared_spell_path(prepared_spell) %></td>
+        <td><%= link_to 'Destroy', prepared_spell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prepared spell', new_prepared_spell_path %>

@@ -1,0 +1,31 @@
+<h1>Listing subclasses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adventuring class</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Min level</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subclasses.each do |subclass| %>
+      <tr>
+        <td><%= subclass.adventuring_class.name %></td>
+        <td><%= subclass.name %></td>
+        <td><%= subclass.description %></td>
+        <td><%= subclass.min_level %></td>
+        <td><%= link_to 'Show', subclass %></td>
+        <td><%= link_to 'Edit', edit_subclass_path(subclass) %></td>
+        <td><%= link_to 'Destroy', subclass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subclass', new_subclass_path %>

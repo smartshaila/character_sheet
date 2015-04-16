@@ -1,0 +1,29 @@
+<h1>Listing spell_durations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spell</th>
+      <th>Time increment</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spell_durations.each do |spell_duration| %>
+      <tr>
+        <td><%= spell_duration.spell %></td>
+        <td><%= spell_duration.time_increment %></td>
+        <td><%= spell_duration.value %></td>
+        <td><%= link_to 'Show', spell_duration %></td>
+        <td><%= link_to 'Edit', edit_spell_duration_path(spell_duration) %></td>
+        <td><%= link_to 'Destroy', spell_duration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spell duration', new_spell_duration_path %>

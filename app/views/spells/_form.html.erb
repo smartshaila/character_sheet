@@ -1,0 +1,45 @@
+<%= form_for(@spell) do |f| %>
+  <% if @spell.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spell.errors.count, "error") %> prohibited this spell from being saved:</h2>
+
+      <ul>
+      <% @spell.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :magic_school_id %><br>
+    <%= f.text_field :magic_school_id %>
+  </div>
+  <div class="field">
+    <%= f.label :is_verbal %><br>
+    <%= f.check_box :is_verbal %>
+  </div>
+  <div class="field">
+    <%= f.label :is_somatic %><br>
+    <%= f.check_box :is_somatic %>
+  </div>
+  <div class="field">
+    <%= f.label :is_concentration %><br>
+    <%= f.check_box :is_concentration %>
+  </div>
+  <div class="field">
+    <%= f.label :is_ritual %><br>
+    <%= f.check_box :is_ritual %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

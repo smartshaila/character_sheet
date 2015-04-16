@@ -7,14 +7,13 @@
       <th>Player</th>
       <th>Campaign</th>
       <th>Race</th>
+      <th>Class</th>
       <th>Alignment</th>
-      <th>Current xp</th>
+      <th>Level</th>
       <th>Max hp</th>
       <th>Current hp</th>
       <th>Speed</th>
-      <th>Notes</th>
       <th>Has inspiration</th>
-      <th>Adventuring class</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,14 +25,13 @@
         <td><%= character.player.name %></td>
         <td><%= character.campaign.name %></td>
         <td><%= character.race %></td>
+        <td><%= character.adventuring_class.name %></td>
         <td><%= character.alignment %></td>
-        <td><%= character.current_xp %></td>
+        <td><%= character.level_progression.level %></td>
         <td><%= character.max_hp %></td>
         <td><%= character.current_hp %></td>
         <td><%= character.speed %></td>
-        <td><%= character.notes %></td>
         <td><%= character.has_inspiration %></td>
-        <td><%= character.adventuring_class.name %></td>
         <td><%= link_to 'Show', character %></td>
         <td><%= link_to 'Edit', edit_character_path(character) %></td>
         <td><%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %></td>

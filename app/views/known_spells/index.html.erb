@@ -1,0 +1,27 @@
+<h1>Listing known_spells</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Spell</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @known_spells.each do |known_spell| %>
+      <tr>
+        <td><%= known_spell.character %></td>
+        <td><%= known_spell.spell %></td>
+        <td><%= link_to 'Show', known_spell %></td>
+        <td><%= link_to 'Edit', edit_known_spell_path(known_spell) %></td>
+        <td><%= link_to 'Destroy', known_spell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Known spell', new_known_spell_path %>

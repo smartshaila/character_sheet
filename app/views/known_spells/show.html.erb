@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @known_spell.character %>
+</p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @known_spell.spell %>
+</p>
+
+<%= link_to 'Edit', edit_known_spell_path(@known_spell) %> |
+<%= link_to 'Back', known_spells_path %>

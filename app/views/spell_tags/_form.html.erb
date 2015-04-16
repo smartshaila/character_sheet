@@ -1,0 +1,25 @@
+<%= form_for(@spell_tag) do |f| %>
+  <% if @spell_tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spell_tag.errors.count, "error") %> prohibited this spell_tag from being saved:</h2>
+
+      <ul>
+      <% @spell_tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :spell_id %><br>
+    <%= f.text_field :spell_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_id %><br>
+    <%= f.text_field :tag_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

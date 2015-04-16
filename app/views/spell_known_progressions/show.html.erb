@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adventuring class:</strong>
+  <%= @spell_known_progression.adventuring_class %>
+</p>
+
+<p>
+  <strong>Subclass:</strong>
+  <%= @spell_known_progression.subclass %>
+</p>
+
+<p>
+  <strong>Level progression:</strong>
+  <%= @spell_known_progression.level_progression %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @spell_known_progression.value %>
+</p>
+
+<%= link_to 'Edit', edit_spell_known_progression_path(@spell_known_progression) %> |
+<%= link_to 'Back', spell_known_progressions_path %>

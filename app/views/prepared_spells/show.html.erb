@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @prepared_spell.character %>
+</p>
+
+<p>
+  <strong>Spell:</strong>
+  <%= @prepared_spell.spell %>
+</p>
+
+<p>
+  <strong>Is cast:</strong>
+  <%= @prepared_spell.is_cast %>
+</p>
+
+<%= link_to 'Edit', edit_prepared_spell_path(@prepared_spell) %> |
+<%= link_to 'Back', prepared_spells_path %>

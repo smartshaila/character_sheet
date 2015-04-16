@@ -1,0 +1,2 @@
+module FavoriteSpellsHelper
+end

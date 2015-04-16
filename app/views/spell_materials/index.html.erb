@@ -1,0 +1,31 @@
+<h1>Listing spell_materials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spell</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Is consumed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spell_materials.each do |spell_material| %>
+      <tr>
+        <td><%= spell_material.spell %></td>
+        <td><%= spell_material.description %></td>
+        <td><%= spell_material.value %></td>
+        <td><%= spell_material.is_consumed %></td>
+        <td><%= link_to 'Show', spell_material %></td>
+        <td><%= link_to 'Edit', edit_spell_material_path(spell_material) %></td>
+        <td><%= link_to 'Destroy', spell_material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spell material', new_spell_material_path %>

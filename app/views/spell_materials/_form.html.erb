@@ -1,0 +1,33 @@
+<%= form_for(@spell_material) do |f| %>
+  <% if @spell_material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spell_material.errors.count, "error") %> prohibited this spell_material from being saved:</h2>
+
+      <ul>
+      <% @spell_material.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :spell_id %><br>
+    <%= f.text_field :spell_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.number_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :is_consumed %><br>
+    <%= f.check_box :is_consumed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

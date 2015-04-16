@@ -1,0 +1,29 @@
+<h1>Listing spell_ranges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Spell</th>
+      <th>Range type</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @spell_ranges.each do |spell_range| %>
+      <tr>
+        <td><%= spell_range.spell %></td>
+        <td><%= spell_range.range_type %></td>
+        <td><%= spell_range.value %></td>
+        <td><%= link_to 'Show', spell_range %></td>
+        <td><%= link_to 'Edit', edit_spell_range_path(spell_range) %></td>
+        <td><%= link_to 'Destroy', spell_range, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Spell range', new_spell_range_path %>

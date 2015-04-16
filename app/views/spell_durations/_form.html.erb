@@ -1,0 +1,29 @@
+<%= form_for(@spell_duration) do |f| %>
+  <% if @spell_duration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spell_duration.errors.count, "error") %> prohibited this spell_duration from being saved:</h2>
+
+      <ul>
+      <% @spell_duration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :spell_id %><br>
+    <%= f.text_field :spell_id %>
+  </div>
+  <div class="field">
+    <%= f.label :time_increment_id %><br>
+    <%= f.text_field :time_increment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.number_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
