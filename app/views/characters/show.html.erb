@@ -62,10 +62,11 @@
     <th>Modifier</th>
     <th>Saving Throw</th>
   </tr>
-  <% @character.character_abilities.each do |ca| %>
+  <% Ability.all.each do |ability| %>
     <%
+       ca = @character.character_abilities.where("ability_id = ?", ability.id).first
        ability_mod = (ca.value - 10)/2
-       proficiency = @character.adventuring_class.class_proficiencies.map(&:ability).include?(ca.ability) ? @character.level_progression.proficiency : 0
+       proficiency = @character.adventuring_class.class_proficiencies.map(&:ability).include?(ability) ? @character.level_progression.proficiency : 0
     %>
     <tr>
       <td><%= ca.ability.name %></td>
