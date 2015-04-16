@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @armor.item %>
+</p>
+
+<p>
+  <strong>Base ac:</strong>
+  <%= @armor.base_ac %>
+</p>
+
+<p>
+  <strong>Max ability:</strong>
+  <%= @armor.max_ability %>
+</p>
+
+<%= link_to 'Edit', edit_armor_path(@armor) %> |
+<%= link_to 'Back', armors_path %>

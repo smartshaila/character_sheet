@@ -1,0 +1,2 @@
+module AdventuringClassesHelper
+end

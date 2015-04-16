@@ -1,0 +1,29 @@
+<h1>Listing magics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @magics.each do |magic| %>
+      <tr>
+        <td><%= magic.name %></td>
+        <td><%= magic.description %></td>
+        <td><%= magic.item %></td>
+        <td><%= link_to 'Show', magic %></td>
+        <td><%= link_to 'Edit', edit_magic_path(magic) %></td>
+        <td><%= link_to 'Destroy', magic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Magic', new_magic_path %>

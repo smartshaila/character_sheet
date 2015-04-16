@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Adventuring class:</strong>
+  <%= @class_proficiency.adventuring_class %>
+</p>
+
+<p>
+  <strong>Ability:</strong>
+  <%= @class_proficiency.ability %>
+</p>
+
+<%= link_to 'Edit', edit_class_proficiency_path(@class_proficiency) %> |
+<%= link_to 'Back', class_proficiencies_path %>

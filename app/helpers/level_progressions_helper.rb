@@ -1,0 +1,2 @@
+module LevelProgressionsHelper
+end

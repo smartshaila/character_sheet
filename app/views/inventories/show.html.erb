@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @inventory.character %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @inventory.item %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @inventory.quantity %>
+</p>
+
+<p>
+  <strong>Is private:</strong>
+  <%= @inventory.is_private %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @inventory.location %>
+</p>
+
+<p>
+  <strong>Is equipped:</strong>
+  <%= @inventory.is_equipped %>
+</p>
+
+<p>
+  <strong>Weapon:</strong>
+  <%= @inventory.weapon %>
+</p>
+
+<p>
+  <strong>Magic:</strong>
+  <%= @inventory.magic %>
+</p>
+
+<p>
+  <strong>Magic bonus:</strong>
+  <%= @inventory.magic_bonus %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @inventory.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @inventory.description %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @inventory.weight %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @inventory.value %>
+</p>
+
+<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
+<%= link_to 'Back', inventories_path %>

@@ -1,0 +1,49 @@
+<h1>Listing inventories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Is private</th>
+      <th>Location</th>
+      <th>Is equipped</th>
+      <th>Weapon</th>
+      <th>Magic</th>
+      <th>Magic bonus</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Weight</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.character %></td>
+        <td><%= inventory.item %></td>
+        <td><%= inventory.quantity %></td>
+        <td><%= inventory.is_private %></td>
+        <td><%= inventory.location %></td>
+        <td><%= inventory.is_equipped %></td>
+        <td><%= inventory.weapon %></td>
+        <td><%= inventory.magic %></td>
+        <td><%= inventory.magic_bonus %></td>
+        <td><%= inventory.name %></td>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.weight %></td>
+        <td><%= inventory.value %></td>
+        <td><%= link_to 'Show', inventory %></td>
+        <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
+        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inventory', new_inventory_path %>

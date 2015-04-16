@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @adventuring_class.name %>
+</p>
+
+<p>
+  <strong>Hit die:</strong>
+  <%= @adventuring_class.hit_die %>
+</p>
+
+<%= link_to 'Edit', edit_adventuring_class_path(@adventuring_class) %> |
+<%= link_to 'Back', adventuring_classes_path %>

@@ -1,0 +1,2 @@
+module CharacterAbilitiesHelper
+end

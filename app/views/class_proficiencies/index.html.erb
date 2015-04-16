@@ -1,0 +1,27 @@
+<h1>Listing class_proficiencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Adventuring class</th>
+      <th>Ability</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @class_proficiencies.each do |class_proficiency| %>
+      <tr>
+        <td><%= class_proficiency.adventuring_class %></td>
+        <td><%= class_proficiency.ability %></td>
+        <td><%= link_to 'Show', class_proficiency %></td>
+        <td><%= link_to 'Edit', edit_class_proficiency_path(class_proficiency) %></td>
+        <td><%= link_to 'Destroy', class_proficiency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Class proficiency', new_class_proficiency_path %>

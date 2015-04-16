@@ -1,0 +1,69 @@
+<%= form_for(@inventory) do |f| %>
+  <% if @inventory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+
+      <ul>
+      <% @inventory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :character_id %><br>
+    <%= f.text_field :character_id %>
+  </div>
+  <div class="field">
+    <%= f.label :item_id %><br>
+    <%= f.text_field :item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :is_private %><br>
+    <%= f.check_box :is_private %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :is_equipped %><br>
+    <%= f.check_box :is_equipped %>
+  </div>
+  <div class="field">
+    <%= f.label :weapon_id %><br>
+    <%= f.text_field :weapon_id %>
+  </div>
+  <div class="field">
+    <%= f.label :magic_id %><br>
+    <%= f.text_field :magic_id %>
+  </div>
+  <div class="field">
+    <%= f.label :magic_bonus %><br>
+    <%= f.number_field :magic_bonus %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

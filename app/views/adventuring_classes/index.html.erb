@@ -1,0 +1,27 @@
+<h1>Listing adventuring_classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Hit die</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adventuring_classes.each do |adventuring_class| %>
+      <tr>
+        <td><%= adventuring_class.name %></td>
+        <td><%= adventuring_class.hit_die %></td>
+        <td><%= link_to 'Show', adventuring_class %></td>
+        <td><%= link_to 'Edit', edit_adventuring_class_path(adventuring_class) %></td>
+        <td><%= link_to 'Destroy', adventuring_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Adventuring class', new_adventuring_class_path %>

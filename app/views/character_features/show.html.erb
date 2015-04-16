@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @character_feature.character %>
+</p>
+
+<p>
+  <strong>Feature:</strong>
+  <%= @character_feature.feature %>
+</p>
+
+<%= link_to 'Edit', edit_character_feature_path(@character_feature) %> |
+<%= link_to 'Back', character_features_path %>

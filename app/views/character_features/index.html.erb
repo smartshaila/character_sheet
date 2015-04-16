@@ -1,0 +1,27 @@
+<h1>Listing character_features</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Feature</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @character_features.each do |character_feature| %>
+      <tr>
+        <td><%= character_feature.character %></td>
+        <td><%= character_feature.feature %></td>
+        <td><%= link_to 'Show', character_feature %></td>
+        <td><%= link_to 'Edit', edit_character_feature_path(character_feature) %></td>
+        <td><%= link_to 'Destroy', character_feature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Character feature', new_character_feature_path %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @character.name %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @character.race %>
+</p>
+
+<p>
+  <strong>Alignment:</strong>
+  <%= @character.alignment %>
+</p>
+
+<p>
+  <strong>Current xp:</strong>
+  <%= @character.current_xp %>
+</p>
+
+<p>
+  <strong>Max hp:</strong>
+  <%= @character.max_hp %>
+</p>
+
+<p>
+  <strong>Current hp:</strong>
+  <%= @character.current_hp %>
+</p>
+
+<p>
+  <strong>Speed:</strong>
+  <%= @character.speed %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @character.notes %>
+</p>
+
+<p>
+  <strong>Has inspiration:</strong>
+  <%= @character.has_inspiration %>
+</p>
+
+<p>
+  <strong>Adventuring class:</strong>
+  <%= @character.adventuring_class %>
+</p>
+
+<%= link_to 'Edit', edit_character_path(@character) %> |
+<%= link_to 'Back', characters_path %>

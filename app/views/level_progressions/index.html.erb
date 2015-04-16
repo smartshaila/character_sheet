@@ -1,0 +1,29 @@
+<h1>Listing level_progressions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Proficiency</th>
+      <th>Min xp</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @level_progressions.each do |level_progression| %>
+      <tr>
+        <td><%= level_progression.level %></td>
+        <td><%= level_progression.proficiency %></td>
+        <td><%= level_progression.min_xp %></td>
+        <td><%= link_to 'Show', level_progression %></td>
+        <td><%= link_to 'Edit', edit_level_progression_path(level_progression) %></td>
+        <td><%= link_to 'Destroy', level_progression, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Level progression', new_level_progression_path %>

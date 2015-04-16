@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @level_progression.level %>
+</p>
+
+<p>
+  <strong>Proficiency:</strong>
+  <%= @level_progression.proficiency %>
+</p>
+
+<p>
+  <strong>Min xp:</strong>
+  <%= @level_progression.min_xp %>
+</p>
+
+<%= link_to 'Edit', edit_level_progression_path(@level_progression) %> |
+<%= link_to 'Back', level_progressions_path %>

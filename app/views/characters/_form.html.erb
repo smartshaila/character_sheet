@@ -1,0 +1,57 @@
+<%= form_for(@character) do |f| %>
+  <% if @character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+      <% @character.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :race %><br>
+    <%= f.text_field :race %>
+  </div>
+  <div class="field">
+    <%= f.label :alignment %><br>
+    <%= f.text_field :alignment %>
+  </div>
+  <div class="field">
+    <%= f.label :current_xp %><br>
+    <%= f.number_field :current_xp %>
+  </div>
+  <div class="field">
+    <%= f.label :max_hp %><br>
+    <%= f.number_field :max_hp %>
+  </div>
+  <div class="field">
+    <%= f.label :current_hp %><br>
+    <%= f.number_field :current_hp %>
+  </div>
+  <div class="field">
+    <%= f.label :speed %><br>
+    <%= f.number_field :speed %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :has_inspiration %><br>
+    <%= f.check_box :has_inspiration %>
+  </div>
+  <div class="field">
+    <%= f.label :adventuring_class_id %><br>
+    <%= f.text_field :adventuring_class_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
