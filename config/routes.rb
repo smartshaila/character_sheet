@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'angular/index'
+  get 'angular/classes'
+
   resources :spell_materials
   resources :prepared_spells
   resources :known_spells
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   resources :adventuring_classes
   resources :campaigns
   resources :players
+
   root 'characters#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

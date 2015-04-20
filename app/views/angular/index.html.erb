@@ -1,15 +1,37 @@
 <div ng-app="atmlApp" ng-controller="atmlCtrl" layout="column">
   <md-toolbar class="md-primary">
-    <h1 class="md-toolbar-tools" ng-if="user.name">Hello, {{user.name}}</h1>
+    <h1 class="md-toolbar-tools" ng-if="character.name">{{character.name}}'s Character Sheet</h1>
   </md-toolbar>
-  <md-content layout-padding layout="row" layout-sm="column">
     <form name="nameForm">
-      <md-input-container>
-        <label>Enter your name</label>
-        <input ng-model="user.name">
-      </md-input-container>
+      <md-content layout-padding layout="row" layout-sm="column">
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="character.name">
+        </md-input-container>
+        <md-input-container>
+          <label>Race</label>
+          <input ng-model="character.race">
+        </md-input-container>
+        <md-input-container>
+          <label>Alignment</label>
+          <input ng-model="character.alignment">
+        </md-input-container>
+      </md-content>
+      <md-content layout-padding layout="row" layout-sm="column">
+        <md-input-container>
+          <label>XP</label>
+          <input ng-model="character.xp">
+        </md-input-container>
+        <md-input-container>
+          <label>Level</label>
+          <input ng-model="character.level">
+        </md-input-container>
+      </md-content>
+      <md-content layout-padding layout="row" layout-sm="column">
+        <md-select placeholder="Select Class" ng-model="character.class" ng-options="key as class_data.name for (key, class_data) in classes" style="margin-top: 1.7em">
+        </md-select>
+      </md-content>
     </form>
-  </md-content>
 </div>
 <!--
 <div class="container-fluid" ng-app="ngModule">

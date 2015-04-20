@@ -1,0 +1,13 @@
+<div ng-app="atmlApp" ng-controller="atmlCtrl" layout="column">
+  <md-toolbar class="md-primary">
+    <h1 class="md-toolbar-tools" ng-if="user.name">Hello, {{user.name}}</h1>
+  </md-toolbar>
+  <md-content layout-padding layout="row" layout-sm="column">
+    <form name="nameForm">
+      <md-input-container>
+        <label>Enter your name</label>
+        <input ng-model="user.name">
+      </md-input-container>
+    </form>
+  </md-content>
+</div>
