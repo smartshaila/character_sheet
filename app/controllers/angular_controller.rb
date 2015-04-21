@@ -2,7 +2,7 @@ class AngularController < ApplicationController
   def index
   end
 
-  def classes2
+  def classes
     result = Hash[AdventuringClass.all.map{|ac|
       [
           ac.id,
@@ -17,15 +17,13 @@ class AngularController < ApplicationController
     render :json => result.to_json
   end
 
-  def classes
-    result = AdventuringClass.all.map{|ac|
-          {
-              id: ac.id,
-              name: ac.name,
-              proficiencies: ac.class_proficiencies.map{|cp|
-                cp.ability.id
-              }
-          }
+  def levels
+    result = LevelProgression.all.map{|lp|
+      {
+          level: lp.level,
+          proficiency: lp.proficiency,
+          min_xp: lp.min_xp
+      }
     }
     render :json => result.to_json
   end

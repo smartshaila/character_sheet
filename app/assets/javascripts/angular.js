@@ -6,7 +6,18 @@
 atmlApp = angular
   .module('atmlApp',['ngMaterial'])
   .controller('atmlCtrl', function($scope, $http){
-    $scope.classes = [];
     $http.get('classes.json').then(function (value) { $scope.classes = value.data; });
-    $scope.character = {name: '', adventuring_class: ''};
+    $http.get('levels.json').then(function (value) { $scope.levels = value.data; });
+    $scope.character = {
+        name: '',
+        adventuring_class: '',
+        xp: 0,
+        level: function () {
+            return $scope.levels.sort(function (a, b) {
+                return a.level - b.level;
+            }).find(function (lp) {
+                return lp.min_xp <= this.xp;
+            }).level
+        }
+    };
   });

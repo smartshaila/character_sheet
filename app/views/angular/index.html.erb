@@ -24,12 +24,12 @@
         </md-input-container>
         <md-input-container>
           <label>Level</label>
-          <input ng-model="character.level">
+          <input ng-model="character.level" disabled>
         </md-input-container>
       </md-content>
       <md-content layout-padding layout="row" layout-sm="column">
         <md-select placeholder="Select Class" ng-model="character.adventuring_class" style="margin-top: 1.7em">
-          <md-option ng-repeat="c in classes" ng-value="c.id">{{c.name}}</md-option>
+          <md-option ng-repeat="(id, value) in classes" ng-value="id">{{value.name}}</md-option>
         </md-select>
       </md-content>
     </form>

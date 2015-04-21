@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'angular/index'
   get 'angular/classes'
+  get 'angular/levels'
 
   resources :spell_materials
   resources :prepared_spells
