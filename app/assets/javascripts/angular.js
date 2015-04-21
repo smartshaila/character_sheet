@@ -14,9 +14,9 @@ atmlApp = angular
         xp: 0,
         level: function () {
             return $scope.levels.sort(function (a, b) {
-                return a.level - b.level;
+                return b.level - a.level;
             }).find(function (lp) {
-                return lp.min_xp <= this.xp;
+                return lp.min_xp <= $scope.character.xp;
             }).level
         }
     };
