@@ -6,10 +6,7 @@
 atmlApp = angular
   .module('atmlApp',['ngMaterial'])
   .controller('atmlCtrl', function($scope, $http){
-    $http.get('classes.json').
-        success(function(data) {
-            $scope.classes = data;
-        });
-    $scope.character = {name: ''};
+    $scope.classes = [];
+    $http.get('classes.json').then(function (value) { $scope.classes = value.data; });
+    $scope.character = {name: '', adventuring_class: ''};
   });
-
