@@ -1,5 +1,11 @@
 class AngularController < ApplicationController
-  def index
+
+  def character
+    @id = params[:id]
+  end
+
+  def character_data
+    render :json => Character.find(params[:id]).to_json
   end
 
   def classes
