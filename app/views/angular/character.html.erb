@@ -2,35 +2,23 @@
   <md-toolbar class="md-primary">
     <h1 class="md-toolbar-tools" ng-if="character.name">{{character.name}}'s Character Sheet</h1>
   </md-toolbar>
-  <form name="nameForm">
-    <md-content layout-padding layout="row" layout-sm="column">
-      <md-input-container>
-        <label>Name</label>
-        <input ng-model="character.name">
-      </md-input-container>
-      <md-input-container>
-        <label>Race</label>
-        <input ng-model="character.race">
-      </md-input-container>
-      <md-input-container>
-        <label>Alignment</label>
-        <input ng-model="character.alignment">
-      </md-input-container>
-    </md-content>
-    <md-content layout-padding layout="row" layout-sm="column">
-      <md-input-container>
-        <label>XP</label>
-        <input ng-model="character.current_xp">
-      </md-input-container>
-      <md-input-container>
-        <label>Level</label>
-        <input ng-model="character.level" ng-model-options="{ getterSetter: true }" disabled>
-      </md-input-container>
-    </md-content>
-    <md-content layout-padding layout="row" layout-sm="column">
-      <md-select placeholder="Select Class" ng-model="character.adventuring_class_id" style="margin-top: 1.7em">
-        <md-option ng-repeat="(id, value) in classes" ng-value="id">{{value.name}}</md-option>
-      </md-select>
-    </md-content>
-  </form>
+  <md-content class="md-padding">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Character Overview">
+        <%= render 'overview' %>
+      </md-tab>
+      <md-tab label="Combat">
+        <%= render 'combat' %>
+      </md-tab>
+      <md-tab label="Skills and Abilities">
+        <%= render 'skills' %>
+      </md-tab>
+      <md-tab label="Inventory">
+        <%= render 'inventory' %>
+      </md-tab>
+      <md-tab label="Spells">
+        <%= render 'spells' %>
+      </md-tab>
+    </md-tabs>
+  </md-content>
 </div>

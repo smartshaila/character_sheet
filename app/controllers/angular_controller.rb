@@ -5,7 +5,7 @@ class AngularController < ApplicationController
   end
 
   def character_data
-    render :json => Character.find(params[:id]).to_json
+    render :json => Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}})
   end
 
   def classes
@@ -33,4 +33,15 @@ class AngularController < ApplicationController
     }
     render :json => result.to_json
   end
+
+  def urls
+    result = Hash[Ability.all.map{|ability|
+      [
+        ability.name,
+        view_context.image_path("#{ability.name.downcase}.png")
+      ]
+    }]
+    render :json => result.to_json
+  end
+
 end

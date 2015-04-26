@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'angular/classes'
   get 'angular/levels'
   get 'angular/character_data/:id', to: 'angular#character_data'
+  get 'angular/urls'
 
   resources :spell_materials
   resources :prepared_spells

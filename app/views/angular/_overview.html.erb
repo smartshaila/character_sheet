@@ -1,0 +1,45 @@
+<form name="nameForm">
+  <md-content layout-padding layout="row" layout-sm="column">
+    <md-input-container>
+      <label>Name</label>
+      <input ng-model="character.name">
+    </md-input-container>
+    <md-input-container>
+      <label>Race</label>
+      <input ng-model="character.race">
+    </md-input-container>
+    <md-input-container>
+      <label>Alignment</label>
+      <input ng-model="character.alignment">
+    </md-input-container>
+    <md-input-container>
+      <label>Speed</label>
+      <input ng-model="character.speed">
+    </md-input-container>
+  </md-content>
+  <md-content layout-padding layout="row" layout-sm="column">
+    <md-input-container>
+      <label>Level</label>
+      <input ng-model="character.level" ng-model-options="{ getterSetter: true }" disabled>
+    </md-input-container>
+    <md-input-container>
+      <label>Current XP</label>
+      <input ng-model="character.current_xp">
+    </md-input-container>
+    <md-input-container>
+      <label>XP to Next Level</label>
+      <input ng-model="character.next_level_xp" ng-model-options="{ getterSetter: true }" disabled>
+    </md-input-container>
+  </md-content>
+  <md-content layout-padding layout="row" layout-sm="column">
+    <md-input-container>
+      <label>Character Notes</label>
+      <textarea ng-model="character.notes"></textarea>
+    </md-input-container>
+  </md-content>
+  <md-content layout-padding layout="row" layout-sm="column">
+    <md-select placeholder="Select Class" ng-model="character.adventuring_class_id" style="margin-top: 1.7em">
+      <md-option ng-repeat="(id, value) in classes" ng-value="id">{{value.name}}</md-option>
+    </md-select>
+  </md-content>
+</form>

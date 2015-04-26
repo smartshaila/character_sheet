@@ -1,0 +1,26 @@
+<form name="nameForm">
+  {{character.character_abilities}}
+  <md-grid-list md-cols-sm="1" md-cols-gt-sm="3"
+                md-row-height-gt-md="2:1" md-row-height="4:3"
+                md-gutter="8px" md-gutter-gt-sm="4px" >
+    <md-grid-tile ng-repeat="ca in character.character_abilities"
+                  md-rowspan="1" md-colspan="1">
+      <div style="background-color: lightblue; height: 100%; width: 50%">
+        <img ng-src="{{urls[ca.ability.name]}}" style="width:100%" />
+      </div>
+      <div style="background-color: lightgreen; height: 100%; width: 50%">
+        <md-content layout-padding layout="column" layout-sm="column">
+          <md-input-container>
+            <label>Ability</label>
+            <input ng-model="ca.value | modifier : 0" ng-model-options="{ getterSetter: true }" disabled>
+          </md-input-container>
+          <md-input-container>
+            <label>Save</label>
+            <input ng-model="ca.value | modifier : character.proficiency()" ng-model-options="{ getterSetter: true }" disabled>
+          </md-input-container>
+        </md-content>
+      </div>
+      <md-grid-tile-footer><h3>{{ca.ability.name}}: {{ca.value}}</h3></md-grid-tile-footer>
+    </md-grid-tile>
+  </md-grid-list>
+</form>
