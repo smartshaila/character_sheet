@@ -19,7 +19,7 @@
       <tr>
         <td><%= spell.name %></td>
         <td><%= spell.description %></td>
-        <td><%= spell.magic_school %></td>
+        <td><%= link_to spell.magic_school.name, spell.magic_school %></td>
         <td><%= spell.is_verbal %></td>
         <td><%= spell.is_somatic %></td>
         <td><%= spell.is_concentration %></td>
