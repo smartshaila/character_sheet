@@ -5,7 +5,7 @@ class AngularController < ApplicationController
   end
 
   def character_data
-    render :json => Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}})
+    render :json => Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}, character_skills: {}})
   end
 
   def classes
@@ -20,6 +20,16 @@ class AngularController < ApplicationController
           }
       ]
     }]
+    render :json => result.to_json
+  end
+
+  def skills
+    result = Skill.all.map{|skill| {
+      id: skill.id,
+      name: skill.name,
+      ability: Ability.find(skill.ability_id),
+      }
+    }
     render :json => result.to_json
   end
 

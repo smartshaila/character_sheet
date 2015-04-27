@@ -5,6 +5,44 @@
 
 atmlApp = angular.module('atmlApp', ['ngMaterial']);
 
+atmlApp.factory('SkillModel', function() {
+  var Skill = function (json, is_proficient) {
+    this.proficient = is_proficient;
+
+    this.initialize = function () {
+      var self = this;
+      angular.extend(self, json);
+    };
+
+    this.initialize();
+  };
+
+  return Skill;
+});
+
+atmlApp.factory('SkillService', function ($http, SkillModel) {
+  var SkillService = function (proficient_skills) {
+    this.skills = [];
+
+    this.initialize = function () {
+      var url = '../skills.json';
+      var json = $http.get(url);
+      var self = this;
+      json.then(function (response) {
+        self.skills = response.data.map(function(skill) {
+          return new SkillModel(skill, proficient_skills.some(function (ps) {
+            return skill.id == ps;
+          }));
+        });
+      });
+    };
+
+    this.initialize();
+  };
+
+  return SkillService;
+});
+
 atmlApp.factory('AdventuringClassModel', function() {
   var AdventuringClass = function (json) {
     this.proficiencies = [];
@@ -90,10 +128,11 @@ atmlApp.factory('LevelProgressionService', function ($http, LevelProgressionMode
   return LevelProgressionService;
 });
 
-atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, AdventuringClassService) {
+atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, AdventuringClassService, SkillService) {
   var Character = function (character_id) {
     this.current_xp = 0;
     this.adventuring_class_id = 1;
+    this.character_skills = [];
     this.initialize = function () {
       var url = '../character_data/' + character_id + '.json';
       var json = $http.get(url);
@@ -101,6 +140,10 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
 
       json.then(function(response) {
         angular.extend(self, response.data);
+        self.skill_service = new SkillService(self.character_skills.map(function(cs) {
+          return cs.skill_id;
+        }));
+        self.skills = self.skill_service.skills;
       });
     };
 

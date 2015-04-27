@@ -1,13 +1,23 @@
 <form name="nameForm">
   <div layout="row" layout-align="space-around start" flex>
-    <div style="width: 66%;">
-      <md-grid-list md-cols-sm="1" md-cols-gt-sm="3"
+    <div style="width: 50%;">
+      <md-grid-list md-cols-sm="1" md-cols-gt-sm="2"
                     md-row-height="2:1"
                     md-gutter="8px" md-gutter-gt-sm="4px">
         <md-grid-tile ng-repeat="ca in character.character_abilities"
                       md-rowspan="1" md-colspan="1">
-          <div class="ability {{character.ability_proficiency(ca.ability) ? 'proficient' : ''}}" flex>
-            <img ng-src="{{urls[ca.ability.name]}}" style="width:100%"/>
+          <div class="flip-container ability {{character.ability_proficiency(ca.ability) ? 'proficient' : ''}}">
+            <div class="flipper">
+              <div class="front">
+                <img ng-src="{{urls[ca.ability.name]}}" style="width:100%"/>
+              </div>
+              <div class="back">
+                <md-input-container>
+                  <label>{{ca.ability.name}}</label>
+                  <input ng-model="ca.value">
+                </md-input-container>
+              </div>
+            </div>
           </div>
           <div class="ability" flex>
             <md-content layout-padding layout="column" layout-sm="column">
@@ -22,14 +32,12 @@
               </md-input-container>
             </md-content>
           </div>
-          <md-grid-tile-footer>
-            <h3>{{ca.ability.name}}: {{ca.value}} - {{character.ability_proficiency(ca.ability)}}</h3>
-          </md-grid-tile-footer>
         </md-grid-tile>
       </md-grid-list>
     </div>
-    <div style="width:33%;">
-      {{character.character_abilities}}
+    <div style="width:50%;">
+      <div>{{character.skills}}</div>
+      <div>Boom!</div>
     </div>
   </div>
 </form>
