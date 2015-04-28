@@ -36,8 +36,22 @@
       </md-grid-list>
     </div>
     <div style="width:50%;">
-      <div>{{character.skills}}</div>
-      <div>Boom!</div>
+        <table datatable="ng" class="row-border hover" dt-options="dtOptions">
+          <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Ability</th>
+            <th>Modifier</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="skill in character.skills">
+            <td>{{ skill.name }}</td>
+            <td>{{ skill.ability.name }}</td>
+            <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficient ? character.proficiency() : 0) }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 </form>

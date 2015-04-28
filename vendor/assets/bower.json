@@ -2,6 +2,7 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "angular": "latest",
-    "angular-material": "latest"
+    "angular-material": "latest",
+    "angular-datatables": "latest"
   }
 }

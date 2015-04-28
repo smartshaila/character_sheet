@@ -1,9 +1,11 @@
+//= require datatables/media/js/jquery.dataTables
 //= require angular/angular
 //= require angular-aria/angular-aria
 //= require angular-animate/angular-animate
 //= require angular-material/angular-material
+//= require angular-datatables/dist/angular-datatables
 
-atmlApp = angular.module('atmlApp', ['ngMaterial']);
+atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables']);
 
 atmlApp.factory('SkillModel', function() {
   var Skill = function (json, is_proficient) {
@@ -29,15 +31,20 @@ atmlApp.factory('SkillService', function ($http, SkillModel) {
       var json = $http.get(url);
       var self = this;
       json.then(function (response) {
-        self.skills = response.data.map(function(skill) {
-          return new SkillModel(skill, proficient_skills.some(function (ps) {
+        response.data.forEach(function(skill) {
+          self.skills.push(new SkillModel(skill, proficient_skills.some(function (ps) {
             return skill.id == ps;
-          }));
+          })));
         });
       });
     };
 
+    this.getSkills = function () {
+      return this.skills;
+    };
+
     this.initialize();
+
   };
 
   return SkillService;
@@ -133,6 +140,7 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
     this.current_xp = 0;
     this.adventuring_class_id = 1;
     this.character_skills = [];
+    this.character_abilities = [];
     this.initialize = function () {
       var url = '../character_data/' + character_id + '.json';
       var json = $http.get(url);
@@ -143,7 +151,7 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
         self.skill_service = new SkillService(self.character_skills.map(function(cs) {
           return cs.skill_id;
         }));
-        self.skills = self.skill_service.skills;
+        self.skills = self.skill_service.getSkills();
       });
     };
 
@@ -182,6 +190,12 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       return this.ability_proficiency(ability) ? this.proficiency() : 0;
     };
 
+    this.ability_score = function (ability) {
+      return this.character_abilities.find( function (ca) {
+        return ca.ability.id == ability.id;
+      }).value;
+    };
+
     this.initialize();
   };
 
@@ -202,6 +216,8 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
   $scope.character = {};
   $scope.classes = [];
   $scope.urls = {};
+
+  $scope.dtOptions = {bPaginate: false, bFilter: false, bInfo: false};
 
   var save_updates = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
