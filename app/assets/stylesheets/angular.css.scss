@@ -7,7 +7,7 @@
 }
 
 .proficient {
-  background-color: lightblue;
+  background-color: lightblue !important;
 }
 
 md-grid-tile {
@@ -16,9 +16,44 @@ md-grid-tile {
 
 /* entire container, keeps perspective */
 .flip-container {
-  perspective: 1000;
+  width: 50%;
+
+  &:hover .flipper, &.hover .flipper {
+    // Front pane, placed above back.
+    .front {
+      @include transform(perspective(1000px) rotateY(-179.9deg));
+    }
+
+    // Front pane, initially hidden
+    .back {
+      @include transform(perspective(1000px) rotateY(0));
+    }
+  }
+
+  .flipper {
+    position: relative;
+  }
+
+  .front, .back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    @include backface-visibility(hidden);
+    @include transform(perspective(1000px) rotateY(180deg));
+    @include transition-duration(0.6s);
+
+    &.front {
+      z-index: 2;
+      @include transform(perspective(1000px) rotateY(0));
+    }
+  }
 }
-/* flip the pane when hovered */
+
+
+/* flip the pane when hovered 
 .flip-container:hover .flipper, .flip-container.hover .flipper {
   transform: rotateY(180deg);
 }
@@ -32,7 +67,7 @@ md-grid-tile {
   height: 100%;
 }
 
-/* flip speed goes here */
+// flip speed goes here 
 .flipper {
   transition: 0.6s;
   transform-style: preserve-3d;
@@ -40,7 +75,7 @@ md-grid-tile {
   position: relative;
 }
 
-/* hide back of pane during swap */
+// hide back of pane during swap
 .front, .back {
   backface-visibility: hidden;
 
@@ -49,17 +84,18 @@ md-grid-tile {
   left: 0;
 }
 
-/* front pane, placed above back */
+// front pane, placed above back
 .front {
   z-index: 2;
-  /* for firefox 31 */
+  // for firefox 31
   transform: rotateY(0deg);
 }
 
-/* back, initially hidden pane */
+// back, initially hidden pane
 .back {
   transform: rotateY(180deg);
 }
+*/
 
 md-input-container {
   padding-bottom: 10px;

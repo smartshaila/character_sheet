@@ -6,7 +6,7 @@
                     md-gutter="8px" md-gutter-gt-sm="4px">
         <md-grid-tile ng-repeat="ca in character.character_abilities"
                       md-rowspan="1" md-colspan="1">
-          <div class="flip-container ability {{character.ability_proficiency(ca.ability) ? 'proficient' : ''}}">
+          <div class="flip-container ability {{character.ability_proficiency(ca.ability) ? 'proficient' : ''}}" ontouchstart="$(this).toggleClass('hover');">
             <div class="flipper">
               <div class="front">
                 <img ng-src="{{urls[ca.ability.name]}}" style="width:100%"/>
@@ -45,7 +45,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="skill in character.skills">
+          <tr ng-repeat="skill in character.skills" class="{{ (skill.proficient ? 'proficient' : '') }}" ng-click="skill.proficient = !skill.proficient">
             <td>{{ skill.name }}</td>
             <td>{{ skill.ability.name }}</td>
             <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficient ? character.proficiency() : 0) }}</td>
