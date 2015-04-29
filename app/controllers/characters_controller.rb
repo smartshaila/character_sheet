@@ -41,8 +41,24 @@ class CharactersController < ApplicationController
   # PATCH/PUT /characters/1
   # PATCH/PUT /characters/1.json
   def update
+    result = @character.update(character_params)
+    ca = params[:character_abilities]
+    unless ca.nil?
+      ca.each do |ability|
+        character_ability = CharacterAbility.find(ability[:id])
+        result &= character_ability.update(value: ability[:value])
+      end
+    end
+    cs = params[:skills]
+    unless cs.nil?
+      cs = cs.select{|skill| skill[:proficient]}
+      CharacterSkill.where(character: @character).destroy_all
+      cs.each do |skill|
+        result &= CharacterSkill.create(character: @character, skill_id: skill[:id])
+      end
+    end
     respond_to do |format|
-      if @character.update(character_params)
+      if result
         format.html { redirect_to @character, notice: 'Character was successfully updated.' }
         format.json { render :show, status: :ok, location: @character }
       else
@@ -70,6 +86,6 @@ class CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :race, :player_id, :campaign_id, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id)
+      params.require(:character).permit(:name, :race, :player_id, :campaign_id, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id, :character_abilities, :character_skills)
     end
 end

@@ -219,27 +219,29 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
 
   $scope.dtOptions = {bPaginate: false, bFilter: false, bInfo: false};
 
-  var save_updates = function () {
+  var save_character = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
   };
 
   var timeout = null;
 
-  var debounce_save_updates = function (newVal, oldVal) {
+  var debounce_save_character = function (newVal, oldVal) {
     if (newVal != oldVal) {
       if (timeout) {
         $timeout.cancel(timeout)
       }
-      timeout = $timeout(save_updates, 1000);  // 1000 = 1 second
+      timeout = $timeout(save_character, 1000);  // 1000 = 1 second
     }
   };
-  $scope.$watch('character.name', debounce_save_updates);
-  $scope.$watch('character.race', debounce_save_updates);
-  $scope.$watch('character.alignment', debounce_save_updates);
-  $scope.$watch('character.current_xp', debounce_save_updates);
-  $scope.$watch('character.adventuring_class_id', debounce_save_updates);
-  $scope.$watch('character.speed', debounce_save_updates);
-  $scope.$watch('character.notes', debounce_save_updates);
+  $scope.$watch('character.name', debounce_save_character);
+  $scope.$watch('character.race', debounce_save_character);
+  $scope.$watch('character.alignment', debounce_save_character);
+  $scope.$watch('character.current_xp', debounce_save_character);
+  $scope.$watch('character.adventuring_class_id', debounce_save_character);
+  $scope.$watch('character.speed', debounce_save_character);
+  $scope.$watch('character.notes', debounce_save_character);
+  $scope.$watch('character.character_abilities', debounce_save_character, true);
+  $scope.$watch('character.skills', debounce_save_character, true);
 
   $scope.init = function (id) {
     $scope.character = new CharacterModel(id);

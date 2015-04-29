@@ -21,7 +21,7 @@ md-grid-tile {
   &:hover .flipper, &.hover .flipper {
     // Front pane, placed above back.
     .front {
-      @include transform(perspective(1000px) rotateY(-179.9deg));
+      @include transform(perspective(1000px) rotateY(-180deg));
     }
 
     // Front pane, initially hidden
