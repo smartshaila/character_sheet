@@ -16,6 +16,7 @@ class CharactersController < ApplicationController
   # GET /characters/new
   def new
     @character = Character.new
+    @character.current_xp = 0
   end
 
   # GET /characters/1/edit
@@ -29,6 +30,9 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
+        Ability.all.each {|a|
+          CharacterAbility.create(ability: a, character: @character, value: 10)
+        }
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render :show, status: :created, location: @character }
       else
