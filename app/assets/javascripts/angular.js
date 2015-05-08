@@ -4,8 +4,10 @@
 //= require angular-animate/angular-animate
 //= require angular-material/angular-material
 //= require angular-datatables/dist/angular-datatables
+//= require angular-bootstrap/ui-bootstrap
+//= require angular-bootstrap/ui-bootstrap-tpls
 
-atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables']);
+atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables', 'ui.bootstrap']);
 
 atmlApp.factory('SkillModel', function() {
   var Skill = function (json, is_proficient) {
@@ -196,6 +198,14 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       }).value;
     };
 
+    this.apply_hp_change = function (hp_change, hp_change_type) {
+      if (hp_change_type) {
+        this.current_hp = Math.min(this.max_hp, this.current_hp + parseInt(hp_change));
+      } else {
+        this.current_hp = Math.max(0, this.current_hp - parseInt(hp_change));
+      }
+    };
+
     this.initialize();
   };
 
@@ -240,6 +250,7 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
   $scope.$watch('character.adventuring_class_id', debounce_save_character);
   $scope.$watch('character.speed', debounce_save_character);
   $scope.$watch('character.notes', debounce_save_character);
+  $scope.$watch('character.current_hp', debounce_save_character);
   $scope.$watch('character.character_abilities', debounce_save_character, true);
   $scope.$watch('character.skills', debounce_save_character, true);
 

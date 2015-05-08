@@ -1,0 +1,16 @@
+<form name="nameForm">
+  <md-content layout-padding layout="row" layout-sm="column">
+    <div class="col-sm-4">
+      <label>How Much I Can Get Hit With a Big Stick</label>
+      <progressbar class="progress" max="character.max_hp" value="character.current_hp">{{character.current_hp}} / {{character.max_hp}}</progressbar>
+    </div>
+  </md-content>
+  <md-content layout-padding layout="row" layout-sm="column">
+    <md-input-container>
+      <label>Enter Damage/Heal Points:</label>
+      <input ng-model="hp_change">
+      <md-button id="apply_change_btn" class="md-raised" ng-click="character.apply_hp_change(hp_change, hp_change_type)">{{ hp_change_type ? 'HEAL' : 'HURT' }}</md-button>
+    </md-input-container>
+    <md-switch ng-model="hp_change_type" aria-label="HP Change Type"></md-switch>
+  </md-content>
+</form>
