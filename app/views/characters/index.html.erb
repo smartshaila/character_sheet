@@ -21,8 +21,8 @@
   <tbody>
     <% @characters.each do |character| %>
       <tr>
-        <td><%= character.name %></td>
-        <td><%= character.player.name %></td>
+        <td><%= link_to character.name, angular_character_path(character) %></td>
+        <td><%= link_to character.player.name, character.player %></td>
         <td><%= character.campaign.name %></td>
         <td><%= character.race %></td>
         <td><%= character.adventuring_class.name %></td>
