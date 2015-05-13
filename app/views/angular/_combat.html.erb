@@ -1,11 +1,16 @@
 <form name="nameForm">
-  <md-content layout-padding layout="row" layout-sm="column">
+  <md-content layout-padding layout="row" layout-sm="column" onclick="$('#hp_inputs').toggleClass('hidden')">
     <div class="col-sm-4">
       <label>How Much I Can Get Hit With a Big Stick</label>
       <progressbar class="progress" max="character.max_hp" value="character.current_hp">{{character.current_hp}} / {{character.max_hp}}</progressbar>
     </div>
   </md-content>
-  <md-content layout-padding layout="row" layout-sm="column">
+  <md-content id="hp_inputs" class="hidden" layout-padding layout="row" layout-sm="column">
+    <md-input-container>
+      <label>Max HP</label>
+      <input ng-model="character.max_hp">
+      <md-button ng-click="character.current_hp = character.max_hp" class="md-raised">Heal to Max</md-button>
+    </md-input-container>
     <md-input-container>
       <label>Enter Damage/Heal Points:</label>
       <input ng-model="hp_change">

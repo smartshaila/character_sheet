@@ -3,6 +3,10 @@
 @import "angular-bootstrap/ui-bootstrap-csp";
 @import "bootstrap-css-only/css/bootstrap";
 
+.hidden {
+  display:none;
+}
+
 .ability {
   height: 100%;
   width: 50%;

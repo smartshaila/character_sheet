@@ -1,13 +1,93 @@
 //= require datatables/media/js/jquery.dataTables
 //= require angular/angular
+//= require angular-rails-templates
 //= require angular-aria/angular-aria
 //= require angular-animate/angular-animate
 //= require angular-material/angular-material
 //= require angular-datatables/dist/angular-datatables
 //= require angular-bootstrap/ui-bootstrap
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require_tree ../templates
 
-atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables', 'ui.bootstrap']);
+atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables', 'ui.bootstrap', 'templates']);
+
+atmlApp.factory('InventoryModel', function() {
+  var Inventory = function (json) {
+
+    this.initialize = function () {
+      var self = this;
+      angular.extend(self, json);
+    };
+
+    this.get_display_name = function () {
+      var res = "";
+      if (this.magic_bonus) {
+        res = (parseInt(this.magic_bonus) >= 0) ? "+" : "";
+        res += this.magic_bonus + " ";
+      }
+      if (this.name) {
+        return res + this.name;
+      } else if (this.magic) {
+        return res + this.magic.name;
+      } else {
+        return res + this.item.name;
+      }
+    };
+
+    this.get_display_description = function () {
+      if (this.description) {
+        return this.description;
+      } else if (this.magic) {
+        return this.magic.description;
+      } else {
+        return this.item.description;
+      }
+    };
+
+    this.initialize();
+  };
+
+  return Inventory;
+});
+
+atmlApp.factory('ItemModel', function() {
+  var Item = function (json) {
+    this.initialize = function () {
+      var self = this;
+      angular.extend(self, json);
+    };
+
+    this.initialize();
+  };
+
+  return Item;
+});
+
+atmlApp.factory('ItemService', function ($http, ItemModel) {
+  var ItemService = function () {
+    this.items = [];
+
+    this.initialize = function () {
+      var url = '../items.json';
+      var json = $http.get(url);
+      var self = this;
+      json.then(function (response) {
+        response.data.forEach(function(item) {
+          self.items.push(new ItemModel(item));
+        });
+      });
+    };
+
+    this.getItems = function () {
+      return this.items;
+    };
+
+    this.initialize();
+
+  };
+
+  return ItemService;
+});
 
 atmlApp.factory('SkillModel', function() {
   var Skill = function (json, is_proficient) {
@@ -137,12 +217,13 @@ atmlApp.factory('LevelProgressionService', function ($http, LevelProgressionMode
   return LevelProgressionService;
 });
 
-atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, AdventuringClassService, SkillService) {
+atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, AdventuringClassService, SkillService, InventoryModel) {
   var Character = function (character_id) {
     this.current_xp = 0;
     this.adventuring_class_id = 1;
     this.character_skills = [];
     this.character_abilities = [];
+    this.inventories = [];
     this.initialize = function () {
       var url = '../character_data/' + character_id + '.json';
       var json = $http.get(url);
@@ -154,6 +235,9 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
           return cs.skill_id;
         }));
         self.skills = self.skill_service.getSkills();
+        self.inventories = self.inventories.map(function(inv) {
+          return new InventoryModel(inv);
+        });
       });
     };
 
@@ -222,12 +306,21 @@ atmlApp.filter('modifier', function() {
   }
 });
 
-atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel) {
+atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel, $mdDialog, ItemService) {
   $scope.character = {};
   $scope.classes = [];
   $scope.urls = {};
 
-  $scope.dtOptions = {bPaginate: false, bFilter: false, bInfo: false};
+  $scope.skills_dtOptions = {bPaginate: false, bFilter: false, bInfo: false};
+
+  $scope.showAdvanced = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'add_inventory.html',
+      targetEvent: ev,
+      locals: { items: $scope.items }
+    });
+  };
 
   var save_character = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
@@ -251,14 +344,27 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
   $scope.$watch('character.speed', debounce_save_character);
   $scope.$watch('character.notes', debounce_save_character);
   $scope.$watch('character.current_hp', debounce_save_character);
+  $scope.$watch('character.max_hp', debounce_save_character);
   $scope.$watch('character.character_abilities', debounce_save_character, true);
   $scope.$watch('character.skills', debounce_save_character, true);
 
   $scope.init = function (id) {
     $scope.character = new CharacterModel(id);
     $scope.classes = $scope.character.adventuring_class_service.adventuring_classes;
+    $scope.item_service = new ItemService();
+    $scope.items = $scope.item_service.getItems();
     $http.get('../urls.json').then(function (value) {
       $scope.urls = value.data;
     });
   };
 });
+
+function DialogController($scope, $mdDialog, items) {
+  $scope.items = items;
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+}

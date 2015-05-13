@@ -1,0 +1,27 @@
+<md-dialog>
+  <md-dialog-content>
+    <div>
+      <table datatable="ng" class="row-border hover">
+        <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Description</th>
+          <th>Cost (gp)</th>
+          <th>Weight (lb)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in items">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.value }}</td>
+          <td>{{ item.weight }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button ng-click="hide()" class="md-raised">Close</md-button>
+  </div>
+</md-dialog>

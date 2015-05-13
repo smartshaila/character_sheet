@@ -4,6 +4,7 @@ class Character < ActiveRecord::Base
   belongs_to :campaign
   has_many :character_abilities, dependent: :destroy
   has_many :character_skills, dependent: :destroy
+  has_many :inventories, dependent: :destroy
 
   validates :name, presence: true
   validates :player, presence: true
