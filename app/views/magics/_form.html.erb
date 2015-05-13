@@ -20,9 +20,8 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
-  </div>
+    <%= f.label :item %><br>
+    <%= f.collection_select(:item_id, Item.all, :id, :name, prompt: true) %>  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

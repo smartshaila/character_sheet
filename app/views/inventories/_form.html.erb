@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :character_id %><br>
-    <%= f.text_field :character_id %>
+    <%= f.label :character %><br>
+    <%= f.collection_select(:character_id, Character.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.text_field :item_id %>
+    <%= f.label :item %><br>
+    <%= f.collection_select(:item_id, Item.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :quantity %><br>
@@ -36,12 +36,12 @@
     <%= f.check_box :is_equipped %>
   </div>
   <div class="field">
-    <%= f.label :weapon_id %><br>
-    <%= f.text_field :weapon_id %>
+    <%= f.label :weapon %><br>
+    <%= f.collection_select(:weapon_id, Weapon.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
-    <%= f.label :magic_id %><br>
-    <%= f.text_field :magic_id %>
+    <%= f.label :magic %><br>
+    <%= f.collection_select(:magic_id, Magic.all, :id, :name, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :magic_bonus %><br>

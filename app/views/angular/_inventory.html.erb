@@ -1,0 +1,27 @@
+<div>
+  <table datatable="ng" class="row-border hover">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Location</th>
+      <th>Weight</th>
+      <th>Equipped</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="inventory in character.inventories">
+      <td>{{ inventory.get_display_name() }}</td>
+      <td>{{ inventory.quantity }}</td>
+      <td>{{ inventory.location }}</td>
+      <td>{{ inventory.item.weight }}</td>
+      <td>{{ inventory.is_equipped }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">
+      Add Inventory
+    </md-button>
+  </div>
+</div>

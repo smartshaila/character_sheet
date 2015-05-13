@@ -23,14 +23,14 @@
   <tbody>
     <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.character %></td>
-        <td><%= inventory.item %></td>
+        <td><%= inventory.character.name %></td>
+        <td><%= inventory.item.name %></td>
         <td><%= inventory.quantity %></td>
         <td><%= inventory.is_private %></td>
         <td><%= inventory.location %></td>
         <td><%= inventory.is_equipped %></td>
-        <td><%= inventory.weapon %></td>
-        <td><%= inventory.magic %></td>
+        <td><%= inventory.weapon.name %></td>
+        <td><%= inventory.magic.name %></td>
         <td><%= inventory.magic_bonus %></td>
         <td><%= inventory.name %></td>
         <td><%= inventory.description %></td>
