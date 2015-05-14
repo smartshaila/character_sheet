@@ -29,8 +29,12 @@
         <td><%= inventory.is_private %></td>
         <td><%= inventory.location %></td>
         <td><%= inventory.is_equipped %></td>
-        <td><%= inventory.weapon.name %></td>
-        <td><%= inventory.magic.name %></td>
+        <td><%= unless inventory.weapon.nil?
+                  inventory.weapon.name
+                end %></td>
+        <td><%= unless inventory.magic.nil?
+                  inventory.magic.name
+                end %></td>
         <td><%= inventory.magic_bonus %></td>
         <td><%= inventory.name %></td>
         <td><%= inventory.description %></td>

@@ -32,12 +32,16 @@
 
 <p>
   <strong>Weapon:</strong>
-  <%= @inventory.weapon.name %>
+  <%= unless @inventory.weapon.nil?
+        @inventory.weapon.name
+      end %>
 </p>
 
 <p>
   <strong>Magic:</strong>
-  <%= @inventory.magic.name %>
+  <%= unless @inventory.magic.nil?
+        @inventory.magic.name
+      end %>
 </p>
 
 <p>
