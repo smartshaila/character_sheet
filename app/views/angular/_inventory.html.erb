@@ -1,23 +1,35 @@
 <div>
-  <table datatable="ng" class="row-border hover">
+  <table datatable="ng" class="row-border hover" id="inventory">
     <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Location</th>
-      <th>Weight</th>
-      <th>Equipped</th>
-    </tr>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Location</th>
+        <th>Equipped</th>
+        <th>Value</th>
+        <th>Weight</th>
+      </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="inventory in character.inventories">
-      <td>{{ inventory.get_display_name() }}</td>
-      <td>{{ inventory.quantity }}</td>
-      <td>{{ inventory.location }}</td>
-      <td>{{ inventory.item.weight }}</td>
-      <td>{{ inventory.is_equipped }}</td>
-    </tr>
+      <tr ng-repeat="inventory in character.inventories">
+        <td>{{ inventory.get_display_name() }}</td>
+        <td>{{ inventory.quantity }}</td>
+        <td>{{ inventory.location }}</td>
+        <td>{{ inventory.is_equipped }}</td>
+        <td>{{ inventory.get_value() }}</td>
+        <td>{{ inventory.item.weight }}</td>
+      </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{ character.total_inventory_value() }} gp</td>
+        <td>{{ character.total_inventory_weight() }} lbs</td>
+      </tr>
+    </tfoot>
   </table>
   <div>
     <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">

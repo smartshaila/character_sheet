@@ -5,11 +5,11 @@ class AngularController < ApplicationController
   end
 
   def character_data
-    render :json => Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}, character_skills: {}, inventories: {include: [:item, :weapon, :magic]}})
+    render :json => JSON.pretty_generate(JSON.parse(Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}, character_skills: {}, inventories: {include: [:item, :weapon, :magic]}})))
   end
 
   def items
-    render :json => Item.all.to_json(include: [:item_type, :weapons, :magics])
+    render :json => JSON.pretty_generate(JSON.parse(Item.all.to_json(include: [:item_type, :weapons, :magics])))
   end
 
   def classes

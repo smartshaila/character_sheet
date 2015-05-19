@@ -44,6 +44,14 @@ atmlApp.factory('InventoryModel', function() {
       }
     };
 
+    this.get_value = function () {
+      return this.item.value;
+    };
+
+    this.get_weight = function () {
+      return this.item.weight;
+    };
+
     this.initialize();
   };
 
@@ -280,6 +288,18 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       return this.character_abilities.find( function (ca) {
         return ca.ability.id == ability.id;
       }).value;
+    };
+
+    this.total_inventory_value = function () {
+      return this.inventories.reduce(function(sum, current) {
+        return sum + current.quantity * current.get_value();
+      }, 0);
+    };
+
+    this.total_inventory_weight = function () {
+      return this.inventories.reduce(function(sum, current) {
+        return sum + current.quantity * current.get_weight();
+      }, 0);
     };
 
     this.apply_hp_change = function (hp_change, hp_change_type) {

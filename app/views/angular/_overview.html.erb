@@ -31,8 +31,7 @@
       <input ng-model="character.next_level_xp" ng-model-options="{ getterSetter: true }" disabled>
     </md-input-container>
     <md-select ng-model="character.adventuring_class_id"
-               ng-model-options="{ getterSetter: true }"
-               style="margin-top: 1.7em">
+               ng-model-options="{ getterSetter: true }">
       <md-option ng-repeat="(id, value) in classes" ng-value="id">{{value.name}}</md-option>
     </md-select>
   </md-content>

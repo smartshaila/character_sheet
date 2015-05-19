@@ -1,24 +1,33 @@
 <md-dialog>
   <md-dialog-content>
     <div>
-      <table datatable="ng" class="row-border hover">
-        <thead>
-        <tr>
-          <th>Item Name</th>
-          <th>Description</th>
-          <th>Cost (gp)</th>
-          <th>Weight (lb)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="item in items">
-          <td>{{ item.name }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.value }}</td>
-          <td>{{ item.weight }}</td>
-        </tr>
-        </tbody>
-      </table>
+      <form>
+        <table datatable="ng" class="row-border hover">
+          <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th>Cost (gp)</th>
+            <th>Weight (lb)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="item in items">
+            <td>
+              <md-select ng-disabled="item.magics.length == 0"
+                         ng-model="item.selected_magic_id"
+                         ng-model-options="{ getterSetter: true }">
+                <md-option ng-value="">{{ item.name }}</md-option>
+                <md-option ng-repeat="(id, value) in item.magics" ng-value="id">{{ value.name }}</md-option>
+              </md-select>
+            </td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.value }}</td>
+            <td>{{ item.weight }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
     </div>
   </md-dialog-content>
   <div class="md-actions">
