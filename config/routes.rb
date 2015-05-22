@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'angular/urls'
   get 'angular/skills'
   get 'angular/items'
+  put 'angular/inventories/:character_id', to: 'angular#build_inventory'
 
   resources :spell_materials
   resources :prepared_spells

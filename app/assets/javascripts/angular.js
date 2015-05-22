@@ -60,6 +60,8 @@ atmlApp.factory('InventoryModel', function() {
 
 atmlApp.factory('ItemModel', function() {
   var Item = function (json) {
+    this.selected = false;
+
     this.initialize = function () {
       var self = this;
       angular.extend(self, json);
@@ -342,9 +344,21 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
     });
   };
 
+  function get_selected_items () {
+    return $scope.items.filter(function(item) {
+      return item.selected;
+    });
+  }
+
   var save_character = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
   };
+
+  $scope.save_items_to_inventories = function () {
+    $http.put('/angular/inventories/' + $scope.character.id + '.json', {items: get_selected_items()});
+  };
+
+  //To Do: get response/promise and update inventory on page
 
   var timeout = null;
 
@@ -373,6 +387,7 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
     $scope.classes = $scope.character.adventuring_class_service.adventuring_classes;
     $scope.item_service = new ItemService();
     $scope.items = $scope.item_service.getItems();
+
     $http.get('../urls.json').then(function (value) {
       $scope.urls = value.data;
     });

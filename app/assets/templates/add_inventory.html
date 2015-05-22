@@ -12,7 +12,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="item in items">
+          <tr ng-repeat="item in items" class="{{ (item.selected ? 'selected' : '') }}" ng-click="item.selected = !item.selected">
             <td>
               <md-select ng-disabled="item.magics.length == 0"
                          ng-model="item.selected_magic_id"

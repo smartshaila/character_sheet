@@ -58,8 +58,26 @@ class AngularController < ApplicationController
     render :json => result.to_json
   end
 
-  def add_inventory
-    render layout: false
-  end
+  def build_inventory
+    @character_id = params[:character_id]
+    @character = Character.find(@character_id)
+    @items = params[:items]
 
+    unless @character.nil? or @items.empty?
+      inventory_params = {
+        character: @character,
+        quantity: 1,
+        is_private: false,
+        is_equipped: false
+      }
+      @items.each{|item|
+        inventory_params[:item_id] = item[:id]
+        Inventory.create(inventory_params)
+      }
+      result = @character.inventories
+      render :json => result.to_json
+    else
+      render :json => {errors: 'Character does not exist!'}
+    end
+  end
 end
