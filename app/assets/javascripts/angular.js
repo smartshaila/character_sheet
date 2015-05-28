@@ -322,6 +322,33 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       });
     };
 
+    this.dex = function () {
+     return this.character_abilities.find(function (ca) {
+       return ca.ability.name == 'Dexterity';
+      });
+    };
+
+    this.armor_class = function () {
+      var dex_score = this.character_abilities.find(function (ca) {
+        return ca.ability.name == 'Dexterity';
+      }).value;
+      var dex_mod = Math.floor((dex_score - 10) / 2);
+      var armors = this.inventories.filter(function (inv) {
+        return inv.is_equipped && ('armor' in inv['item']);
+      });
+      dex_mod = armors.reduce(function (value, inv) {
+        var max_ability = inv['item']['armor']['max_ability'];
+        if (max_ability == null || max_ability > value) {
+          return value;
+        } else {
+          return max_ability;
+        }
+      }, dex_mod);
+      return armors.reduce(function (value, inv) {
+        return value + inv['item']['armor']['base_ac'];
+      }, dex_mod);
+    };
+
     this.initialize();
   };
 
@@ -404,7 +431,7 @@ function DialogController($scope, $mdDialog, items, character, $http, InventoryM
     });
   }
   $scope.save_items_to_inventories = function () {
-    var json = $http.put('/angular/inventories/' + $scope.character.id + '.json', {items: get_selected_items()});
+    var json = $http.post('/angular/inventories/' + $scope.character.id + '.json', {items: get_selected_items()});
     json.then(function(response) {
       $scope.character.inventories = response.data.map(function(inv) {
         return new InventoryModel(inv);

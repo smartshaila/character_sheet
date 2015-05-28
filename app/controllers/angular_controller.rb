@@ -5,7 +5,10 @@ class AngularController < ApplicationController
   end
 
   def character_data
-    render :json => JSON.pretty_generate(JSON.parse(Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability}, character_skills: {}, inventories: {include: [:item, :weapon, :magic]}})))
+    render :json => JSON.pretty_generate(JSON.parse(Character.find(params[:id]).to_json(include: {character_abilities: {include: :ability},
+                                                                                                  character_skills: {},
+                                                                                                  inventories: {include: [:weapon, :magic,
+                                                                                                                          item: {include: :armor}]}})))
   end
 
   def items
@@ -75,7 +78,7 @@ class AngularController < ApplicationController
         Inventory.create(inventory_params)
       }
       result = @character.inventories
-      render :json => result.to_json(include: [:item, :weapon, :magic])
+      render :json => result.to_json(include: [:weapon, :magic, item: {include: :armor}])
     else
       render :json => {errors: 'Character does not exist!'}
     end
