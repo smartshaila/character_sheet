@@ -322,9 +322,9 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       });
     };
 
-    this.dex = function () {
-     return this.character_abilities.find(function (ca) {
-       return ca.ability.name == 'Dexterity';
+    this.get_inventory_by_id = function (inventory_id) {
+      return this.inventories.find(function(inv) {
+        return inv['id'] == inventory_id;
       });
     };
 
@@ -379,6 +379,19 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
       targetEvent: ev,
       locals: { items: $scope.items, character: $scope.character }
     });
+  };
+
+  var save_inventory = function (inventory_id) {
+    $http.put('/inventories/' + inventory_id + '.json', $scope.character.get_inventory_by_id(inventory_id));
+  };
+
+  var inventory_timeouts = {};
+
+  var debounce_save_inventory = function (inventory_id) {
+    if ('inventory_id' in inventory_timeouts) {
+      $timeout.cancel(inventory_timeouts['inventory_id']);
+    }
+    inventory_timeouts['inventory_id'] = $timeout(function() {save_inventory(inventory_id);}, 1000);
   };
 
   var save_character = function () {
