@@ -7,9 +7,10 @@
 //= require angular-datatables/dist/angular-datatables
 //= require angular-bootstrap/ui-bootstrap
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require angular-material-icons/angular-material-icons
 //= require_tree ../templates
 
-atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables', 'ui.bootstrap', 'templates']);
+atmlApp = angular.module('atmlApp', ['ngMaterial', 'datatables', 'ui.bootstrap', 'templates', 'ngMdIcons']);
 
 atmlApp.factory('InventoryModel', function() {
   var Inventory = function (json) {
@@ -312,6 +313,15 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
       }
     };
 
+    this.delete_inventory = function (inventory_id) {
+      var self = this;
+      $http.delete('/inventories/' + inventory_id + '.json').then(function(response) {
+        self.inventories = self.inventories.filter(function(inventory) {
+          return inventory['id'] != inventory_id;
+        });
+      });
+    };
+
     this.initialize();
   };
 
@@ -340,25 +350,13 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
       controller: DialogController,
       templateUrl: 'add_inventory.html',
       targetEvent: ev,
-      locals: { items: $scope.items }
+      locals: { items: $scope.items, character: $scope.character }
     });
   };
-
-  function get_selected_items () {
-    return $scope.items.filter(function(item) {
-      return item.selected;
-    });
-  }
 
   var save_character = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
   };
-
-  $scope.save_items_to_inventories = function () {
-    $http.put('/angular/inventories/' + $scope.character.id + '.json', {items: get_selected_items()});
-  };
-
-  //To Do: get response/promise and update inventory on page
 
   var timeout = null;
 
@@ -394,12 +392,27 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
   };
 });
 
-function DialogController($scope, $mdDialog, items) {
+function DialogController($scope, $mdDialog, items, character, $http, InventoryModel) {
   $scope.items = items;
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
+  $scope.character = character;
   $scope.cancel = function() {
     $mdDialog.cancel();
+  };
+  function get_selected_items () {
+    return $scope.items.filter(function(item) {
+      return item.selected;
+    });
+  }
+  $scope.save_items_to_inventories = function () {
+    var json = $http.put('/angular/inventories/' + $scope.character.id + '.json', {items: get_selected_items()});
+    json.then(function(response) {
+      $scope.character.inventories = response.data.map(function(inv) {
+        return new InventoryModel(inv);
+      });
+    });
+    $mdDialog.hide();
+    $scope.items.forEach(function (item) {
+      item.selected = false;
+    });
   };
 }

@@ -75,7 +75,7 @@ class AngularController < ApplicationController
         Inventory.create(inventory_params)
       }
       result = @character.inventories
-      render :json => result.to_json
+      render :json => result.to_json(include: [:item, :weapon, :magic])
     else
       render :json => {errors: 'Character does not exist!'}
     end

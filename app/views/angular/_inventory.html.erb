@@ -8,6 +8,7 @@
         <th>Equipped</th>
         <th>Value</th>
         <th>Weight</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,11 @@
         <td>{{ inventory.is_equipped }}</td>
         <td>{{ inventory.get_value() }}</td>
         <td>{{ inventory.item.weight }}</td>
+        <td>
+          <md-button class="md-icon-button md-primary" ng-click="character.delete_inventory(inventory.id)" aria-label="Delete">
+            <ng-md-icon icon="clear" style="fill: red"></ng-md-icon>
+          </md-button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -28,6 +34,7 @@
         <td></td>
         <td>{{ character.total_inventory_value() }} gp</td>
         <td>{{ character.total_inventory_weight() }} lbs</td>
+        <td></td>
       </tr>
     </tfoot>
   </table>

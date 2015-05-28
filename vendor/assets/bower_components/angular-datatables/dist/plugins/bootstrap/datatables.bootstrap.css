@@ -1,5 +1,5 @@
 /*!
- * angular-datatables - v0.4.2
+ * angular-datatables - v0.4.3
  * https://github.com/l-lin/angular-datatables
  * License: MIT
  */
@@ -30,12 +30,15 @@ div.dataTables_paginate ul.pagination {
 }
 table.table {
     clear: both;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
     max-width: none !important;
 }
-table.table thead .sorting, table.table thead .sorting_asc, table.table thead .sorting_desc, table.table thead .sorting_asc_disabled, table.table thead .sorting_desc_disabled {
+table.table thead .sorting,
+table.table thead .sorting_asc,
+table.table thead .sorting_desc,
+table.table thead .sorting_asc_disabled,
+table.table thead .sorting_desc_disabled {
     cursor: pointer;
+    background: none;
 }
 table.table thead .sorting:before {
     content: ' ';
@@ -50,6 +53,13 @@ table.table thead .sorting_asc:before {
     content: "\25B4";
     padding-right: 5px;
 }
+.dataTables_scrollBody table.table thead .sorting:before,
+.dataTables_scrollBody table.table thead .sorting_desc:before,
+.dataTables_scrollBody table.table thead .sorting_asc:before {
+    content: '';
+    padding-right: 0;
+}
+
 table.dataTable th:active {
     outline: none;
 }
@@ -163,4 +173,38 @@ div.DTFC_RightFootWrapper table, div.DTFC_LeftFootWrapper table {
  */
 ul.ColVis_collection {
     width: auto !important;
+}
+/*
+ * Server side processing
+ */
+.dataTables_wrapper {
+    position: relative;
+}
+.dataTables_wrapper .dataTables_processing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 40px;
+    margin-left: -50%;
+    margin-top: -25px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: white;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(25%, rgba(255, 255, 255, 0.9)), color-stop(75%, rgba(255, 255, 255, 0.9)), color-stop(100%, rgba(255, 255, 255, 0)));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+    /* FF3.6+ */
+    background: -ms-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+    /* IE10+ */
+    background: -o-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+    /* Opera 11.10+ */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0) 100%);
+    /* W3C */
+}
+.dataTables_wrapper .dataTables_processing {
+    color: #333333;
 }

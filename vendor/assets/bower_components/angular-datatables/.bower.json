@@ -1,8 +1,19 @@
 {
   "name": "angular-datatables",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "l-lin",
-  "main": "dist/angular-datatables.js",
+  "main": [
+    "dist/angular-datatables.js",
+    "dist/plugins/bootstrap/angular-datatables.bootstrap.js",
+    "dist/plugins/bootstrap/datatables.bootstrap.css",
+    "dist/plugins/colreorder/angular-datatables.colreorder.js",
+    "dist/plugins/columnfilter/angular-datatables.columnfilter.js",
+    "dist/plugins/colvis/angular-datatables.colvis.js",
+    "dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js",
+    "dist/plugins/fixedheader/angular-datatables.fixedheader.js",
+    "dist/plugins/scroller/angular-datatables.scroller.js",
+    "dist/plugins/tabletools/angular-datatables.tabletools.js"
+  ],
   "ignore": [
     ".bowerrc",
     ".editorconfig",
@@ -44,11 +55,11 @@
     "angular-bootstrap": ">=0.10.0"
   },
   "homepage": "https://github.com/l-lin/angular-datatables",
-  "_release": "0.4.2",
+  "_release": "0.4.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.2",
-    "commit": "6e2b10820d15614fc5a43263d9d84869acbc85f7"
+    "tag": "v0.4.3",
+    "commit": "113323c741a87d2f74e44d134272efca2307ae76"
   },
   "_source": "git://github.com/l-lin/angular-datatables.git",
   "_target": "*",

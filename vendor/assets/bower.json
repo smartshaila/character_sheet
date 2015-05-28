@@ -5,6 +5,7 @@
     "angular-material": "latest",
     "angular-datatables": "latest",
     "angular-bootstrap": "latest",
-    "bootstrap-css-only": "latest"
+    "bootstrap-css-only": "latest",
+    "angular-material-icons": "latest"
   }
 }
