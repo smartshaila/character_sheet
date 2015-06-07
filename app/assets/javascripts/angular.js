@@ -381,19 +381,6 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
     });
   };
 
-  var save_inventory = function (inventory_id) {
-    $http.put('/inventories/' + inventory_id + '.json', $scope.character.get_inventory_by_id(inventory_id));
-  };
-
-  var inventory_timeouts = {};
-
-  var debounce_save_inventory = function (inventory_id) {
-    if ('inventory_id' in inventory_timeouts) {
-      $timeout.cancel(inventory_timeouts['inventory_id']);
-    }
-    inventory_timeouts['inventory_id'] = $timeout(function() {save_inventory(inventory_id);}, 1000);
-  };
-
   var save_character = function () {
     $http.put('/characters/' + $scope.character.id + '.json', $scope.character);
   };
@@ -408,17 +395,12 @@ atmlApp.controller('atmlCtrl', function ($scope, $http, $timeout, CharacterModel
       timeout = $timeout(save_character, 1000);  // 1000 = 1 second
     }
   };
-  $scope.$watch('character.name', debounce_save_character);
-  $scope.$watch('character.race', debounce_save_character);
-  $scope.$watch('character.alignment', debounce_save_character);
-  $scope.$watch('character.current_xp', debounce_save_character);
-  $scope.$watch('character.adventuring_class_id', debounce_save_character);
-  $scope.$watch('character.speed', debounce_save_character);
-  $scope.$watch('character.notes', debounce_save_character);
-  $scope.$watch('character.current_hp', debounce_save_character);
-  $scope.$watch('character.max_hp', debounce_save_character);
+
+  $scope.$watchGroup(['character.name','character.race','character.alignment','character.current_xp','character.adventuring_class_id','character.speed','character.notes','character.current_hp','character.max_hp'], debounce_save_character);
+
   $scope.$watch('character.character_abilities', debounce_save_character, true);
   $scope.$watch('character.skills', debounce_save_character, true);
+  $scope.$watch('character.inventories', debounce_save_character, true);
 
   $scope.init = function (id) {
     $scope.character = new CharacterModel(id);

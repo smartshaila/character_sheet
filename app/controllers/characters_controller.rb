@@ -61,6 +61,13 @@ class CharactersController < ApplicationController
         result &= CharacterSkill.create(character: @character, skill_id: skill[:id])
       end
     end
+    ci = params[:inventories]
+    unless ci.nil?
+      ci.each do |inventory|
+        inv = Inventory.find(inventory[:id])
+        result &= inv.update(is_equipped: inventory[:is_equipped])
+      end
+    end
     respond_to do |format|
       if result
         format.html { redirect_to @character, notice: 'Character was successfully updated.' }
@@ -90,6 +97,6 @@ class CharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_params
-      params.require(:character).permit(:name, :race, :player_id, :campaign_id, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id, :character_abilities, :character_skills)
+      params.require(:character).permit(:name, :race, :player_id, :campaign_id, :alignment, :current_xp, :max_hp, :current_hp, :speed, :notes, :has_inspiration, :adventuring_class_id, :character_abilities, :character_skills, :inventories)
     end
 end

@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="inventory in character.inventories" ng-click="inventory.is_equipped = !inventory.is_equipped">
+      <tr ng-repeat="inventory in character.inventories" ng-click="inventory.is_equipped = !inventory.is_equipped" class="{{ (inventory.is_equipped ? 'highlight' : '') }}">
         <td>{{ inventory.get_display_name() }}</td>
         <td>{{ inventory.quantity }}</td>
         <td>{{ inventory.location }}</td>

@@ -45,7 +45,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="skill in character.skills" class="{{ (skill.proficient ? 'proficient' : '') }}" ng-click="skill.proficient = !skill.proficient">
+          <tr ng-repeat="skill in character.skills" class="{{ (skill.proficient ? 'highlight' : '') }}" ng-click="skill.proficient = !skill.proficient">
             <td>{{ skill.name }}</td>
             <td>{{ skill.ability.name }}</td>
             <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficient ? character.proficiency() : 0) }}</td>
