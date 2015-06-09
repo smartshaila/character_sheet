@@ -58,7 +58,7 @@ class CharactersController < ApplicationController
       cs = cs.select{|skill| skill[:proficient]}
       CharacterSkill.where(character: @character).destroy_all
       cs.each do |skill|
-        result &= CharacterSkill.create(character: @character, skill_id: skill[:id])
+        result &= CharacterSkill.create(character: @character, skill_id: skill[:id], proficiency_multiplier: (skill[:proficiency] || 1))
       end
     end
     ci = params[:inventories]

@@ -24,6 +24,9 @@ class CharacterSkillsController < ApplicationController
   # POST /character_skills
   # POST /character_skills.json
   def create
+    if character_skill_params[:proficiency_multiplier].nil?
+      character_skill_params[:proficiency_multiplier] = 1
+    end
     @character_skill = CharacterSkill.new(character_skill_params)
 
     respond_to do |format|
@@ -61,7 +64,7 @@ class CharacterSkillsController < ApplicationController
     end
   end
 
-  private``
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_character_skill
       @character_skill = CharacterSkill.find(params[:id])
@@ -69,6 +72,6 @@ class CharacterSkillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def character_skill_params
-      params.require(:character_skill).permit(:character_id, :skill_id)
+      params.require(:character_skill).permit(:character_id, :skill_id, :proficiency_multiplier)
     end
 end

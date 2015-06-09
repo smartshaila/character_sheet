@@ -438,3 +438,4 @@ function DialogController($scope, $mdDialog, items, character, $http, InventoryM
     });
   };
 }
+

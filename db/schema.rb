@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150416171529) do
+ActiveRecord::Schema.define(version: 20150609114538) do
 
   create_table "abilities", force: true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150416171529) do
     t.integer  "skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "proficiency_multiplier"
   end
 
   add_index "character_skills", ["character_id"], name: "index_character_skills_on_character_id"

@@ -42,6 +42,7 @@
             <th>Skill</th>
             <th>Ability</th>
             <th>Modifier</th>
+            <th>Proficiency Multiplier</th>
           </tr>
           </thead>
           <tbody>
@@ -49,6 +50,7 @@
             <td>{{ skill.name }}</td>
             <td>{{ skill.ability.name }}</td>
             <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficient ? character.proficiency() : 0) }}</td>
+            <td><input ng-model="skill.proficiency_multiplier"></td>
           </tr>
           </tbody>
         </table>
