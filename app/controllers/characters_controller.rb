@@ -55,10 +55,10 @@ class CharactersController < ApplicationController
     end
     cs = params[:skills]
     unless cs.nil?
-      cs = cs.select{|skill| skill[:proficient]}
+      cs = cs.select{|skill| skill[:proficiency_multiplier].to_f > 0}
       CharacterSkill.where(character: @character).destroy_all
       cs.each do |skill|
-        result &= CharacterSkill.create(character: @character, skill_id: skill[:id], proficiency_multiplier: (skill[:proficiency] || 1))
+        result &= CharacterSkill.create(character: @character, skill_id: skill[:id], proficiency_multiplier: (skill[:proficiency_multiplier] || 1))
       end
     end
     ci = params[:inventories]

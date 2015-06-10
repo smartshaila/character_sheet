@@ -46,10 +46,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="skill in character.skills" class="{{ (skill.proficient ? 'highlight' : '') }}" ng-click="skill.proficient = !skill.proficient">
+          <tr ng-repeat="skill in character.skills" class="{{ (skill.proficiency_multiplier > 0 ? 'highlight' : '') }}">
             <td>{{ skill.name }}</td>
             <td>{{ skill.ability.name }}</td>
-            <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficient ? character.proficiency() : 0) }}</td>
+            <td>{{ character.ability_score(skill.ability) | modifier : (skill.proficiency_multiplier * character.proficiency()) }}</td>
             <td><input ng-model="skill.proficiency_multiplier"></td>
           </tr>
           </tbody>

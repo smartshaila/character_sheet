@@ -101,8 +101,9 @@ atmlApp.factory('ItemService', function ($http, ItemModel) {
 });
 
 atmlApp.factory('SkillModel', function() {
-  var Skill = function (json, is_proficient) {
-    this.proficient = is_proficient;
+  var Skill = function (json, proficiency_multiplier) {
+
+    this.proficiency_multiplier = proficiency_multiplier || 0;
 
     this.initialize = function () {
       var self = this;
@@ -125,9 +126,7 @@ atmlApp.factory('SkillService', function ($http, SkillModel) {
       var self = this;
       json.then(function (response) {
         response.data.forEach(function(skill) {
-          self.skills.push(new SkillModel(skill, proficient_skills.some(function (ps) {
-            return skill.id == ps;
-          })));
+          self.skills.push(new SkillModel(skill, proficient_skills[skill.id]));
         });
       });
     };
@@ -242,9 +241,11 @@ atmlApp.factory('CharacterModel', function ($http, LevelProgressionService, Adve
 
       json.then(function(response) {
         angular.extend(self, response.data);
-        self.skill_service = new SkillService(self.character_skills.map(function(cs) {
-          return cs.skill_id;
-        }));
+        var skill_hash = {};
+        self.character_skills.forEach(function(cs) {
+          skill_hash[cs.skill_id] = cs.proficiency_multiplier;
+        });
+        self.skill_service = new SkillService(skill_hash);
         self.skills = self.skill_service.getSkills();
         self.inventories = self.inventories.map(function(inv) {
           return new InventoryModel(inv);
@@ -359,7 +360,7 @@ atmlApp.filter('modifier', function() {
   return function(value, proficiency) {
     var modifier = Math.floor((value - 10) / 2);
     if (proficiency != null) {
-      modifier += proficiency;
+      modifier += Math.floor(proficiency);
     }
     return ((modifier >= 0) ? '+' : '') + modifier;
   }
